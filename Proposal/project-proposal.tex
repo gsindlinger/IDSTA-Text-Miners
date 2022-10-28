@@ -32,6 +32,13 @@
 % Fuer anderthalbzeiligen Textsatz
 \usepackage{setspace}
 
+% Fuer research questions
+\usepackage{enumitem}
+
+\newlist{questions}{enumerate}{2}
+\setlist[questions,1]{label=RQ\arabic*.,ref=RQ\arabic*}
+\setlist[questions,2]{label=(\alph*),ref=\thequestionsi(\alph*)}
+
 % hyperrefs in the documents
 \PassOptionsToPackage{hyphens}{url}\usepackage[bookmarks=true,colorlinks,pdfpagelabels,pdfstartview = FitH,bookmarksopen = true,bookmarksnumbered = true,linkcolor = black,plainpages = false,hypertexnames = false,citecolor = black,urlcolor=black]{hyperref}
 %\usepackage{hyperref}
@@ -69,7 +76,7 @@
 
 \vspace{0.5\baselineskip}
 {\huge
-\textbf{Hate, Inequality \& Racism in German Rap - A Text Analytics Approach}
+\textbf{Hate, Discrimination \& Racism in German Rap - A Text Analytics Approach}
 }
 \end{center}
 

@@ -1,15 +1,17 @@
 \section{Research Topic Summary}
 
-Use sections to organize your contents. Read the project proposal guidelines available on Moodle to get more information on the contents your proposal should cover. Do not forget to cite online sources~\cite{WFR2017}, books~\cite{grus2019data} or articles you are referencing! It may also be useful to integrate charts or figures in your proposal as seen in Figure~\ref{fig:example}.
+Various journalistic and social science works in the past have dealt with the role of German rap in society.
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[scale=0.3]{figures/most-in-demand-programming-languages-of-2022-codingnomads.jpg}
-  \caption[]{An example chart showing the change of popularity of
-    various programming languages, taken from techrepublic Website\footnotemark[1].}
-  \label{fig:example}
-\end{figure}
+\cite{heinisch2018schlampe},
+\cite{ahlers_2019},
+\cite{wiegel2011deutscher}
 
-\footnotetext[1]{\url{https://www.techrepublic.com/article/the-best-programming-languages-to-learn-in-2022/}}
+In addition to socio-technical analyses, there is one data-driven approache to analyze the song lyrics of various German rappers. In 2016, Bayerischer Rundfunk's cultural magazine Puls \cite{puls_2016} examined the political correctness of various song lyrics by German rappers using a very similar methodology to the one we will use in this paper. Puls selected the five most commercially successful albums by German rappers in each year for the period 2006 to 2016 and downloaded the song lyrics via Genius. These song lyrics were examined for specific discriminatory word groups -- with a particular focus on homophobic, racist, misogynistic, and ableist terms.
 
-In the Latex source provided together with this PDF, you also find hints on how to work on one Latex project collaboratively.
+Puls observed that the use of discriminatory language increased over the first part of the sample period and decreased towards the end. Misogynistic and homophobic remarks played a particularly significant role. Discrimination against the disabled was also a permanent feature of the song lyrics studied, while racism was rather less prevalent. The author of the study also emphasizes the lower significance of the study due to the limitation to five albums per year.
+
+What we do differently:
+- More albums / song lyrics
+- Use of pretrained/self-trained (optional) machine learning frameworks for sentiment analysis, hate speech detection --> we want to pay attention to whether particularly fair lyrics are also present
+- Advanced analysis of terms using Elastic Search
+
