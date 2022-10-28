@@ -1,11 +1,31 @@
 \section{Project Description}\label{sec:project}
 
-TODO: Describe what we want to do.
+As already outlined in \autoref{sec:motivation}, this project will study the extent to which hate, discrimination, and racism influence German rap. For this purpose, we would like to use different methods of text analysis, which will be explained in more detail below. The described approach will also be supplemented by a visual representation in \autoref{fig:pipeline}.
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/pipeline.jpg}
-    \caption[]{Text analytics pipeline}
+    \caption[]{Text Analytics Pipeline}
     \label{fig:pipeline}
   \end{figure}
+
+As a basis for our investigations, a data set on certain artists of the German Rap will be used, which is not finally defined yet. This will be done in the nearest future using information from the web in manual and partially automated work. Corresponding information about artists can be extracted, for example, from \cite{last.fm,tonspion_2021}. The names of those artists are used in a further step to download the lyrics of all songs of those artists via the songlyrics platform Genius \cite{genius}. Genius is an online database for any kind of artistic texts and offers an API interface that provides license-free lyrics of many song lyrics. Since Genius does not fully provide all the data of every international artist, it might be necessary to accept limitations for some artists.
+
+The song lyrics, enriched with information about the artists themselves, finally form the basis of our textual analyses: Since we would like to use pretrained models for the analysis of the lyrics in a further step and many of these models only support English-language texts, it might be necessary to translate the German song lyrics first. For this we intend to use the Python framework DL Translate \cite{lu_2022}, since it is the only package that can freely translate unlimited texts. The translated lyrics, will be stored together with the original lyrics in ElasticSearch. It must be taken into account that by using such a translation tool, possible linguistic-relevant contexts will be incorrectly transferred into the English language. However, since there is considerable interpretative space in the context of song lyrics, this limitation should not be of too much importance. In fact, it is important to keep in mind for the entire project that the song lyrics studied allow for different interpretations, which can only be determined by machine analysis to a limited extent.
+
+As indicated in the paragraph before, we would like to store the translated song lyrics together with the original data in ElasticSearch. The possibilities that ElasticSearch offers in the area of tokenization, classification of words including counting of word frequencies, etc. shall then be used as a basis for a first analysis of the song lyrics.
+\textbf{TODO: Find methods and capabilities of ElasticSearch which could help us to answer the RQs}.
+
+In addition to the described 'basic' methods offered by ElasticSearch, we would like to use predefined machine learning models to enrich the data of the song lyrics. In this context, the frameworks used should be considered as a black box, and the corresponding methods remain untouched. We will consider the following frameworks: German \cite{aluru2020deep,guhr2020training}, English \cite{davidson2017automated,bird2006nltk} \textbf{TODO: A few sentences about each framework. Just call the webpage connected to the citation. Also search for some other frameworks we could use. Maybe not too much because we already reach the limit of two pages for the project description.}
+
+If there is time left, we would like to develop independent machine learning models on our own using the methods discussed in the lecture. However, this requires classification of the existing lyrics data, which would likely need to be done manually. Furthermore, the amount of data available could prove challenging with this approach. If it is not feasible to identify a very large number of song lyrics using the listed approach above, it could be difficult to develop meaningful machine learning models.
+
+Finally, the results of the different analysis methods will be interpreted and visualized. Thereby, the findings of the analyses shall be explicitly highlighted using the lyrics data by visual markers. Additionally, results of the different metrics will be displayed. 
+
+
+
+
+
+
+
   
