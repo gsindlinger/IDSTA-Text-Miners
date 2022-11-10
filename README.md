@@ -6,5 +6,7 @@
 
 Date | Who? | What? | 
 -------- | -------- | --------
-Inhalt   | Inhalt   | Inhalt
-Inhalt   | Inhalt   | Inhalt
+Oct 28   | Johannes Sindlinger  | Design pipeline graphics
+Oct 28   | Johannes Sindlinger  | Write motivation, research topic (partly), project description (partly) 
+Oct 30 | Mara-Eliana Popescu | Extend project description
+Oct 31 | Gal Lebel | Extend research topic, finish proposal
