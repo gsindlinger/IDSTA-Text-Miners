@@ -17,4 +17,5 @@
 
 | Date   | Who?                | What?                                                                   | 
 |--------|---------------------|-------------------------------------------------------------------------|
-| Nov 12 | Johannes Sindlinger | Assignment 1 - Exercise 1                                                |
+| Nov 12 | Johannes Sindlinger | Assignment 1 - Exercise 1                                               |
+| Nov 12 | Mara Popescu        | Assignment 1 - Exercise 3                                               |
