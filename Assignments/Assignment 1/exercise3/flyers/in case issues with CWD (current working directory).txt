@@ -1,0 +1,8 @@
+## Sometimes when moving jupyter notebook files from one directory to another,
+## the python file thinks it's still in the old directory
+import os
+current_path = os.getcwd()
+current_path ## check where is the current CWD
+os.chdir(current_path + "\\bahnstadt") ## chnange the OCD
+new_path = os.getcwd() ## make sure it got updated correctly
+new_path
