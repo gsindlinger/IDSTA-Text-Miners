@@ -10,6 +10,8 @@
 | Oct 28 | Johannes Sindlinger | Write motivation, research topic (partly), project description (partly) |
 | Oct 30 | Mara-Eliana Popescu | Extend project description                                              |
 | Oct 31 | Gal Lebel           | Extend research topic, finish proposal                                  |
+| Nov 18 | Johannes Sindlinger | Setup issues for project start                                          |
+
 
 
 ## Assignment Log
