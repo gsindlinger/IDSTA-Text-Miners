@@ -11,6 +11,7 @@
 | Oct 30 | Mara-Eliana Popescu | Extend project description                                              |
 | Oct 31 | Gal Lebel           | Extend research topic, finish proposal                                  |
 | Nov 18 | Johannes Sindlinger | Setup issues for project start                                          |
+| Nov 25 | Johannes Sindlinger | Create artist list via Spotify API                                      |
 
 
 
