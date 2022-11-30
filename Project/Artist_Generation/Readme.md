@@ -14,5 +14,5 @@ For each playlist requested with the search query "Deutschrap xxxx", all artists
 ``SPOTIFY_CLIENT_SECRET``.
 3. install requirements: ``` pip install -r requirements.txt```
 4. modify the code in file ``main.py`` according to the functionality you want.
-5. run ``python .\main.py```
+5. run ```python .\main.py```
 

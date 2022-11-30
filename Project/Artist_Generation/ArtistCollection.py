@@ -37,6 +37,7 @@ class ArtistCollection:
                 writer.writerow(row)
 
     def read_csv_to_object(self, filename: str):
+
         self.__list.clear()
         with open(filename) as csv_file:
             reader = csv.reader(csv_file)
@@ -44,3 +45,5 @@ class ArtistCollection:
                 name = row.pop(0)
                 years = set([int(y) for y in row])
                 self.__list.update({name: years})
+
+
