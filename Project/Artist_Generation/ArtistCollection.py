@@ -36,14 +36,14 @@ class ArtistCollection:
                 row.extend(list(map(str, years)))
                 writer.writerow(row)
 
-    def read_csv_to_object(self, filename: str):
 
-        self.__list.clear()
-        with open(filename) as csv_file:
-            reader = csv.reader(csv_file)
-            for row in reader:
-                name = row.pop(0)
-                years = set([int(y) for y in row])
-                self.__list.update({name: years})
+def read_csv_to_artist_collection(filename: str) -> ArtistCollection:
+    artist_collection = ArtistCollection()
+    with open(filename, encoding='utf-8') as csv_file:
+        reader = csv.reader(csv_file)
+        for row in reader:
+            name = row.pop(0)
+            years = set([int(y) for y in row])
+            artist_collection.list.update({name: years})
 
-
+    return artist_collection

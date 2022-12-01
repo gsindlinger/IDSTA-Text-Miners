@@ -1,5 +1,5 @@
 import config
-from ArtistCollection import ArtistCollection
+from ArtistCollection import ArtistCollection, read_csv_to_artist_collection
 from SpotifyConnection import SpotifyConnection
 
 
@@ -33,7 +33,7 @@ def collect_artist_data() -> None:
 
 
 def read_artist_data() -> None:
-    artist_collection = ArtistCollection().read_csv_to_object("data/artist_data_single.csv")
+    artist_collection: ArtistCollection = read_csv_to_artist_collection("data/artist_data_single.csv")
     print("Reading csv done!")
 
 
@@ -43,5 +43,4 @@ if __name__ == '__main__':
     ArtistCollection object.
     """
     read_artist_data()
-    #collect_artist_data()
-
+    # collect_artist_data()
