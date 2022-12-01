@@ -3,6 +3,8 @@
 
 
 Materials/
+**/config.py
+**/data/
 
 ### LaTeX ###
 ## Core latex/pdflatex auxiliary files:
