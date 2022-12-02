@@ -20,7 +20,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - elasticsearch_text_miners_assignment_2:/var/lib/elasticsearch/data # persist elasticsearch data
+      - elasticsearch_text_miners_assignment_2:/usr/share/elasticsearch/data:rw # persist elasticsearch data
     ports:
       - "9200:9200" # make port 9200 accessible for the host
 
@@ -37,3 +37,4 @@ services:
 
 volumes:
   elasticsearch_text_miners_assignment_2: # use default volume settings
+    driver: local
