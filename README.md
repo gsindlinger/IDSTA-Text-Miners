@@ -1,5 +1,10 @@
 # IDSTA-Text-Miners
 
+Team Members:
+- Gal Lebel - Bachelor of Science, Computer Science, Heidelberg University
+- Simon Körner - Bachelor of Science, Computer Science, Heidelberg University
+- Johannes Gabriel Sindlinger - Master of Sciencer, Data and Computer Science, Heidelberg University
+
 [![Download Proposal](https://img.shields.io/badge/Download--PDF-Proposal-green)](https://github.com/gsindlinger/IDSTA-Text-Miners/raw/main/Proposal/project-proposal.pdf)
 
 ## Project Log
