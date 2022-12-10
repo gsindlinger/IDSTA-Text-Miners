@@ -3,3 +3,4 @@ numpy
 matplotlib
 spacy
 wordcloud
+scikit-learn
