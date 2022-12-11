@@ -1,13 +1,18 @@
-# IDSTA-Text-Miners
+# IDSTA-Text-Miners: Hate, Discrimination & Racism in German Rap - A Text Analytics Approach
 
 [![Download Proposal](https://img.shields.io/badge/Download--PDF-Proposal-green)](https://github.com/gsindlinger/IDSTA-Text-Miners/raw/main/Proposal/project-proposal.pdf)
+
+Team Members:
+- Gal Lebel (galbalandroid@gmail.com) - Bachelor of Science, Computer Science, Heidelberg University
+- Simon Körner - Bachelor of Science, Computer Science, Heidelberg University
+- Johannes Gabriel Sindlinger (johannes.sindlinger@stud.uni-heidelberg.de) - Master of Sciencer, Data and Computer Science, Heidelberg University
+
+Previous Team Member:
+- Mara-Eliana Popescu
 
 ## Milestone update
 
 ### Project Information
-- Title: Hate, Discrimination & Racism in German Rap - A Text Analytics Approach
-- Team Members: Gal Lebel, Johannes Gabriel Sindlinger, Simon Körner
-- Mail Addresses: galbalandroid@gmail.com, johannes.sindlinger@stud.uni-heidelberg.de
 - Existing Code Fragments: Artist Generation(Collecting artists from which we scrape lyrics), Genius Lyrics Scraper. 
 - Utilized libraries: geniuslyrics, spotipy
 
