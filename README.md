@@ -23,7 +23,7 @@ Previous Team Member:
 | Nov 18 | Johannes Sindlinger | Setup issues for project start                                          |
 | Nov 25 | Johannes Sindlinger | Create artist list via Spotify API                                      |
 | Dec 10 | Gal Lebel           | Genius Lyrics Scraper                                                   |
-| Dec 10 | Gal Lebel           | Milestones                                                              |
+| Dec 10 | Gal Lebel           | Milestone Editing                                                              |
 
 
 
