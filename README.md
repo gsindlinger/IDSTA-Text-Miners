@@ -2,58 +2,17 @@
 
 [![Download Proposal](https://img.shields.io/badge/Download--PDF-Proposal-green)](https://github.com/gsindlinger/IDSTA-Text-Miners/raw/main/Proposal/project-proposal.pdf)
 
-Team Members:
-- Gal Lebel - Bachelor of Science, Computer Science, Heidelberg University
-- Simon Körner - Bachelor of Science, Computer Science, Heidelberg University
-- Johannes Gabriel Sindlinger - Master of Sciencer, Data and Computer Science, Heidelberg University
+## Milestone update
 
-Previous Team Member:
-- Mara-Eliana Popescu
-
-
-
-## Project Log
-
-| Date   | Who?                | What?                                                                   | 
-|--------|---------------------|-------------------------------------------------------------------------|
-| Oct 28 | Johannes Sindlinger | Design pipeline graphics                                                |
-| Oct 28 | Johannes Sindlinger | Write motivation, research topic (partly), project description (partly) |
-| Oct 30 | Mara-Eliana Popescu | Extend project description                                              |
-| Oct 31 | Gal Lebel           | Extend research topic, finish proposal                                  |
-| Nov 18 | Johannes Sindlinger | Setup issues for project start                                          |
-| Nov 25 | Johannes Sindlinger | Create artist list via Spotify API                                      |
-| Dec 10 | Gal Lebel           | Genius Lyrics Scraper                                                   |
-| Dec 10 | Gal Lebel           | Milestone Editing                                                              |
-
-
-
-## Assignment Log
-
-
-| Date   | Who?                | What?                                                                   | 
-|--------|---------------------|-------------------------------------------------------------------------|
-| Nov 12 | Johannes Sindlinger | Assignment 1 - Exercise 1                                               |
-| Nov 12 | Mara Popescu        | Assignment 1 - Exercise 3                                               |
-| Nov 13 | Simon Körner        | Assignment 1 - Exercise 2                                               |
-| Nov 13 | Gal Lebel           | Assignment 1 - Exercise 2                                               |
-| Dec  8 | Gal Lebel           | Assignment 2 - Exercise 1                                               |
-| Dec 10 | Johannes Sindlinger | Assignment 2 - Exercise 2                                               |
-
-
-
-
-
-# Milestone update
-
-## Project Information
-- Title:
+### Project Information
+- Title: Hate, Discrimination & Racism in German Rap - A Text Analytics Approach
 - Team Members: Gal Lebel, Johannes Gabriel Sindlinger, Simon Körner
 - Mail Addresses: galbalandroid@gmail.com, johannes.sindlinger@stud.uni-heidelberg.de
 - Existing Code Fragments: Artist Generation(Collecting artists from which we scrape lyrics), Genius Lyrics Scraper. 
 - Utilized libraries: geniuslyrics, spotipy
 
 
-## Project State
+### Project State
 The current state of the project is that we have successfully fetched a big list of German rap artists using Spotify and have collected the lyrics of 10,500 German rap songs. These lyrics will be used for our analysis. At this point, we have not set ElasticSearch to get our data nor we applied any predefined NLP models to our dataset, which are our next steps in the project.
 
 In the upcoming months (not sure if should be more specific than that), we will pipeline our dataset into ElasticSearch so that we can process and analyze it efficiently.
@@ -63,7 +22,7 @@ Using our preprocessed data, we can now do basic metric analysis and analysis in
 Additionally, we might discover new interestings insights and directions for our project through the analysis. We will update our timeline and tasks accordingly, and will incorporate new ideas that might arise through the results our our analysis.
 We might also consider implementing our own models for our analysis. This could be done using machine learning techniques to train a custom model.
 
-## Data Analysis
+### Data Analysis
 
 The data sources that we are using in our acquired data collection are as following :
 - Spotify Web API: We used the spotipy library to access the Spotify Web API and retrieve a list of German rap artists. We also created a class to work with the API in order to get the list of artists from the official Spotify German rap playlist for the years 1998 to 2023.
@@ -130,3 +89,28 @@ showing the first 2 songs and their information for the artist 'Kollegah':
 Although we have yet to preprocess our acquired collected data, we already havefew ideas about how we should approach this.
 At first we will preprocess our data using ElasticSearch as mentioned above (Tokenization, Lemmatization and so on).
 Later on, as we prepare our data to be used for the different NLP models, we may have to exclude songs which have more than a third of the words in a language which isn't German. This will allow easier analysis of our data.
+
+
+## Project Log
+
+| Date   | Who?                | What?                                                                   | 
+|--------|---------------------|-------------------------------------------------------------------------|
+| Oct 28 | Johannes Sindlinger | Design pipeline graphics                                                |
+| Oct 28 | Johannes Sindlinger | Write motivation, research topic (partly), project description (partly) |
+| Oct 30 | Mara-Eliana Popescu | Extend project description                                              |
+| Oct 31 | Gal Lebel           | Extend research topic, finish proposal                                  |
+| Nov 18 | Johannes Sindlinger | Setup issues for project start                                          |
+| Nov 25 | Johannes Sindlinger | Create artist list via Spotify API                                      |
+| Dec 10 | Gal Lebel           | Genius Lyrics Scraper                                                   |
+| Dec 10 | Gal Lebel           | Milestone Editing                                                              |
+
+
+
+## Assignment Log
+
+
+| Date   | Who?                | What?                                                                   | 
+|--------|---------------------|-------------------------------------------------------------------------|
+| Nov 12 | Johannes Sindlinger | Assignment 1 - Exercise 1                                               |
+| Nov 12 | Mara Popescu        | Assignment 1 - Exercise 3                                               |
+| Dec 10 | Gal Lebel           | Assignment 2 - Exercises 1                                              |
