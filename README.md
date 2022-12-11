@@ -47,8 +47,8 @@ Previous Team Member:
 
 ## Project Information
 - Title:
-- Team Members: Gal Lebel, Gabriel Sidlinger, Simon
-- Mail Addresses: galbalandroid@gmail.com
+- Team Members: Gal Lebel, Johannes Gabriel Sindlinger, Simon Körner
+- Mail Addresses: galbalandroid@gmail.com, johannes.sindlinger@stud.uni-heidelberg.de
 - Existing Code Fragments: Artist Generation(Collecting artists from which we scrape lyrics), Genius Lyrics Scraper. 
 - Utilized libraries: geniuslyrics, spotipy
 
