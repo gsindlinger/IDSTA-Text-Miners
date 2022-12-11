@@ -22,6 +22,8 @@ Using our preprocessed data, we can now do basic metric analysis and analysis in
 Additionally, we might discover new interestings insights and directions for our project through the analysis. We will update our timeline and tasks accordingly, and will incorporate new ideas that might arise through the results our our analysis.
 We might also consider implementing our own models for our analysis. This could be done using machine learning techniques to train a custom model.
 
+![Current status of the project in december 2022](https://github.com/gsindlinger/IDSTA-Text-Miners/blob/Milestone_December/project_pipeline_december_2022.png)
+
 ### Data Analysis
 
 The data sources that we are using in our acquired data collection are as following :
