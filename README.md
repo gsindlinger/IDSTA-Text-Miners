@@ -22,8 +22,8 @@ Previous Team Member:
 | Oct 31 | Gal Lebel           | Extend research topic, finish proposal                                  |
 | Nov 18 | Johannes Sindlinger | Setup issues for project start                                          |
 | Nov 25 | Johannes Sindlinger | Create artist list via Spotify API                                      |
-| Dec  7 | Gal Lebel           | Lyrics scraping from Genius via Jupyter Notebook                        |
-
+| Dec 10 | Gal Lebel           | Genius Lyrics Scraper                                                   |
+| Dec 10 | Gal Lebel           | Milestones                                                              |
 
 
 
@@ -37,7 +37,7 @@ Previous Team Member:
 | Nov 13 | Simon Körner        | Assignment 1 - Exercise 2                                               |
 | Nov 13 | Gal Lebel           | Assignment 1 - Exercise 2                                               |
 | Dec  8 | Gal Lebel           | Assignment 2 - Exercise 1                                               |
-| Nov 12 | Johannes Sindlinger | Assignment 2 - Exercise 2                                               |
+| Dec 10 | Johannes Sindlinger | Assignment 2 - Exercise 2                                               |
 
 
 
