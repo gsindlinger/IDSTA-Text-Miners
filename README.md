@@ -110,8 +110,10 @@ Later on, as we prepare our data to be used for the different NLP models, we may
 ## Assignment Log
 
 
-| Date   | Who?                | What?                                                                   | 
-|--------|---------------------|-------------------------------------------------------------------------|
-| Nov 12 | Johannes Sindlinger | Assignment 1 - Exercise 1                                               |
-| Nov 12 | Mara Popescu        | Assignment 1 - Exercise 3                                               |
-| Dec 10 | Gal Lebel           | Assignment 2 - Exercises 1                                              |
+| Date   | Who?                | What?                      | 
+|--------|---------------------|----------------------------|
+| Nov 12 | Johannes Sindlinger | Assignment 1 - Exercise 1  |
+| Nov 12 | Mara Popescu        | Assignment 1 - Exercise 3  |
+| Dec 09 | Johannes Sindlinger | Assignment 2 - Exercises 2 |
+| Dec 10 | Gal Lebel           | Assignment 2 - Exercises 1 |
+
