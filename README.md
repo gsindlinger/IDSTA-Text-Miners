@@ -12,6 +12,8 @@
 | Oct 31 | Gal Lebel           | Extend research topic, finish proposal                                  |
 | Nov 18 | Johannes Sindlinger | Setup issues for project start                                          |
 | Nov 25 | Johannes Sindlinger | Create artist list via Spotify API                                      |
+| Dec 10 | Gal Lebel           | Genius Lyrics Scraper                                                   |
+| Dec 10 | Gal Lebel           | Milestones                                                              |
 
 
 
@@ -22,6 +24,7 @@
 |--------|---------------------|-------------------------------------------------------------------------|
 | Nov 12 | Johannes Sindlinger | Assignment 1 - Exercise 1                                               |
 | Nov 12 | Mara Popescu        | Assignment 1 - Exercise 3                                               |
+| Dec 10 | Gal Lebel           | Assignment 2 - Exercises 1-6                                            |
 
 
 # Milestone update
