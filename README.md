@@ -13,20 +13,19 @@
 
 
 ### Project State
-The current state of the project is that we have successfully fetched a big list of German rap artists using Spotify and have collected the lyrics of 10,500 German rap songs. These lyrics will be used for our analysis. At this point, we have not set ElasticSearch to get our data nor we applied any predefined NLP models to our dataset, which are our next steps in the project.
+The current state of the project, which is visualized in the graphic below, is that we have successfully fetched a big list of German rap artists using Spotify and have collected the lyrics of 10,500 German rap songs (green color / done). These lyrics will be used for our analysis. At this point, we have not set ElasticSearch to get our data nor we applied any predefined NLP models to our dataset, which are our next steps in the project (yellow color / in progress).
 
-In the upcoming months (not sure if should be more specific than that), we will pipeline our dataset into ElasticSearch so that we can process and analyze it efficiently.
-We will use ElasticSearch to apply tokenization, stemming and lemmatization to clean and preprocess our data.
-Using our preprocessed data, we can now do basic metric analysis and analysis in terms of sentiment analysis using for example HateSonar, NLTK Sentiment Analysis and GermanSentimentBert, in order to extract insights from our data.
+In the upcoming months (not sure if should be more specific than that), we will pipeline our dataset into ElasticSearch so that we can process and analyze it efficiently (yellow color / in progress).
+
+We will use ElasticSearch to apply tokenization, stemming and lemmatization to clean and preprocess our data. Using our preprocessed data, we can now do basic metric analysis and analysis in terms of sentiment analysis using for example HateSonar, NLTK Sentiment Analysis and GermanSentimentBert, in order to extract insights from our data (red color / todo).
 
 Additionally, we might discover new interestings insights and directions for our project through the analysis. We will update our timeline and tasks accordingly, and will incorporate new ideas that might arise through the results our our analysis.
-We might also consider implementing our own models for our analysis. This could be done using machine learning techniques to train a custom model.
 
 ![Current status of the project in december 2022](https://github.com/gsindlinger/IDSTA-Text-Miners/blob/Milestone_December/project_pipeline_december_2022.png)
 
 ### Data Analysis
 
-The data sources that we are using in our acquired data collection are as following :
+The data sources that we are using in our acquired data collection are as following:
 - Spotify Web API: We used the spotipy library to access the Spotify Web API and retrieve a list of German rap artists. We also created a class to work with the API in order to get the list of artists from the official Spotify German rap playlist for the years 1998 to 2023.
 - Genius API: We used the lyricsgenius library to communicate with the Genius API and retrieve the lyrics of the songs by the German rap artists we obtained from the Spotify Web API. We also implemented our own method to scrape the lyrics using BeautifulSoup and multi-threaded the process to speed it up.
   - As part of our lyrics scraping process, we've decided to include additional information for each song like date of release, names of other artists participating in the song and information about the album such as album name and cover art in order to provide more context for our analysis and for our front-end platfrom to display the information in a visually appealing way.
@@ -88,7 +87,7 @@ showing the first 2 songs and their information for the artist 'Kollegah':
     }
 ```
 
-Although we have yet to preprocess our acquired collected data, we already havefew ideas about how we should approach this.
+Although we have yet to preprocess our acquired collected data, we already have few ideas about how we should approach this:
 At first we will preprocess our data using ElasticSearch as mentioned above (Tokenization, Lemmatization and so on).
 Later on, as we prepare our data to be used for the different NLP models, we may have to exclude songs which have more than a third of the words in a language which isn't German. This will allow easier analysis of our data.
 
