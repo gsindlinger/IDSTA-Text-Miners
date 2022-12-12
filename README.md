@@ -26,7 +26,7 @@ We will use ElasticSearch to apply tokenization, stemming and lemmatization to c
 
 Additionally, we might discover new interestings insights and directions for our project through the analysis. We will update our timeline and tasks accordingly, and will incorporate new ideas that might arise through the results our our analysis.
 
-![Current status of the project in december 2022](https://github.com/gsindlinger/IDSTA-Text-Miners/blob/Milestone_December/project_pipeline_december_2022.png)
+![Current status of the project in december 2022](https://github.com/gsindlinger/IDSTA-Text-Miners/blob/main/project_pipeline_december_2022.png)
 
 ### Data Analysis
 
