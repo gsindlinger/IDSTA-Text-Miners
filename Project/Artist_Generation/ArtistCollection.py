@@ -1,40 +1,39 @@
 import csv
-from typing import Set, Dict
+from typing import Set, Dict, List
 
 
 class ArtistCollection:
     def __init__(self):
-        self.__list: Dict[str, Set[int]] = {}
-
-    @property
-    def list(self):
-        return self.__list
+        self.list: Dict[str, Set[int]] = {}
 
     def append_item(self, name: str, year: int) -> None:
         if self.is_existing_artist(name):
             self.get_year_set(name).add(year)
         else:
-            self.__list.update({name: {year}})
+            self.list.update({name: {year}})
 
     def is_existing_artist(self, name: str) -> bool:
-        if name in self.__list:
+        if name in self.list:
             return True
         else:
             return False
 
     def get_year_set(self, name: str) -> Set[int]:
         try:
-            return self.__list[name]
+            return self.list[name]
         except KeyError:
             print("Artist name doesn't exist!")
 
     def write_to_csv(self, filename: str) -> None:
         with open(filename, "w", newline='', encoding='utf-8') as outfile:
             writer = csv.writer(outfile)
-            for name, years in self.__list.items():
+            for name, years in self.list.items():
                 row = [name]
                 row.extend(list(map(str, years)))
                 writer.writerow(row)
+
+    def get_artist_name_list(self) -> List[str]:
+        return list(self.list.keys())
 
 
 def read_csv_to_artist_collection(filename: str) -> ArtistCollection:
