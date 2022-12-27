@@ -1,17 +1,21 @@
 import concurrent
 import json
-from typing import List
+from typing import List, Dict
 
 import requests
 from bs4 import BeautifulSoup
 
 from Pipeline.Lyrics_Scraping.GeniusArtistExtraction import GeniusArtists
-from Pipeline.Lyrics_Scraping.Song import Song
+from Pipeline.Lyrics_Scraping.Song import Song, dict_to_song
 from Pipeline.Lyrics_Scraping.config import CLIENT_ACCESS_TOKEN
 from Pipeline.Util.Util import get_html_resource_to_json
 
 SONGS_PER_ARTIST = 15
 BASE = "https://api.genius.com"
+
+
+class GeniusSongsDict:
+    pass
 
 
 class GeniusSongs:
@@ -22,18 +26,59 @@ class GeniusSongs:
         return len(self.song_list)
 
     def write_song_list_to_json(self, filename: str) -> None:
-        json_string = json.dumps([song.__dict__ for song in self.song_list])
+        json_string = json.dumps(self.write_song_list_to_str(), indent=3)
         with open(filename, 'w', encoding='utf8') as f:
             f.write(json_string)
+
+    def write_song_list_to_str(self) -> str:
+        return [song.__dict__ for song in self.song_list]
+
+    def to_song_dict(self) -> GeniusSongsDict:
+        song_dict = GeniusSongsDict()
+        for song in self.song_list:
+            if song.artist_name in song_dict.song_dict:
+                song_dict.song_dict[song.artist_name].append(song)
+            else:
+                song_dict.song_dict[song.artist_name] = [song]
+        return song_dict
+
+
+def write_song_list_to_str(list) -> str:
+    return [song.__dict__ for song in list]
+
+
+class GeniusSongsDict:
+    def __init__(self):
+        self.song_dict: Dict[str, GeniusSongs] = {}
+
+    def write_song_dict_to_json(self, filename: str) -> None:
+        json_string = json.dumps([{artist_name: write_song_list_to_str(song_list)}
+                                  for artist_name, song_list in self.song_dict.items()], indent=3)
+        with open(filename, 'w', encoding='utf8') as f:
+            f.write(json_string)
+
+    def to_song_list(self) -> GeniusSongs:
+        song_list = GeniusSongs()
+        for _, song_list_temp in self.song_dict:
+            song_list.song_list.extend(song_list_temp)
+        return song_list
 
 
 def read_song_list(filename: str) -> GeniusSongs:
     songs = GeniusSongs()
     with open(filename, 'r') as f:
         json_data = f.read()
-
-    songs.song_list = json.loads(json_data)
+    songs.song_list = [dict_to_song(song) for song in json.loads(json_data)]
     return songs
+
+
+def read_song_dict(filename: str):
+    songs = GeniusSongsDict()
+    with open(filename, 'r') as f:
+        json_data = f.read()
+
+    songs.song_dict = [{list(artist_dict.keys())[0]: [dict_to_song(song) for song in list(artist_dict.values())[0]]}
+                       for artist_dict in json.loads(json_data)]
 
 
 def get_songs_information(song_ids: List[str], artist_id: str, artist_name: str) -> GeniusSongs | None:
@@ -129,12 +174,12 @@ def batch_get_songs(artist_id: List[int], artist_name: List[str], songs_per_arti
     return songs_information
 
 
-def get_songs(artists: GeniusArtists) -> GeniusSongs:
+def get_songs(artists: GeniusArtists) -> Dict[str, GeniusSongs]:
     final_songs = GeniusSongs()
     with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
         for result in executor.map(batch_get_songs,
                                    list(artists.id_list.values()),
                                    list(artists.id_list.keys())):
-            final_songs.song_list.extend(result.song_list)
-
+            if len(result.song_list > 0):
+                final_songs.song_list.extend(result.song_list)
     return final_songs

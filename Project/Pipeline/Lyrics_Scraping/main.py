@@ -3,7 +3,8 @@ from lyricsgenius import Genius
 from Pipeline.Artist_Generation.ArtistCollection import read_csv_to_artist_collection
 from Pipeline.Lyrics_Scraping import GeniusArtistExtraction
 from Pipeline.Lyrics_Scraping.GeniusArtistExtraction import GeniusArtists
-from Pipeline.Lyrics_Scraping.GeniusLyricsExtraction import get_songs, GeniusSongs, read_song_list
+from Pipeline.Lyrics_Scraping.GeniusLyricsExtraction import get_songs, GeniusSongs, read_song_list, GeniusSongsDict, \
+    read_song_dict
 from Pipeline.Lyrics_Scraping.config import CLIENT_ACCESS_TOKEN
 
 if __name__ == '__main__':
@@ -22,6 +23,7 @@ if __name__ == '__main__':
     genius_artists.write_csv("data/artist_id_list.csv")
     '''
 
+    '''
     # Read genius artists id / name to object
     genius_artists: GeniusArtists = GeniusArtistExtraction\
         .csv_to_artist_id_dict("data/artist_id_list.csv")
@@ -31,6 +33,13 @@ if __name__ == '__main__':
 
     # Write songs to json
     songs.write_song_list_to_json("data/refactored/lyrics.json")
+    '''
 
     # Read json to GeniusSongs object
     songs: GeniusSongs = read_song_list("data/lyrics.json")
+    # Convert to Dict Object for better readability with artist name as key
+    songs_dict: GeniusSongsDict = songs.to_song_dict()
+    # Write with artist name as key to json
+    songs_dict.write_song_dict_to_json("data/lyrics_dict_structure.json")
+    # Load dict with artist name as key to json
+    songs_dict_loaded: GeniusSongsDict = read_song_dict("data/lyrics_dict_structure.json")
