@@ -1,6 +1,9 @@
 import csv
 from typing import Set, Dict, List
 
+from Pipeline.Artist_Generation import config
+from Pipeline.Artist_Generation.SpotifyConnection import SpotifyConnection
+
 
 class ArtistCollection:
     def __init__(self):
@@ -46,3 +49,32 @@ def read_csv_to_artist_collection(filename: str) -> ArtistCollection:
             artist_collection.list.update({name: years})
 
     return artist_collection
+
+
+def collect_artist_data() -> None:
+    sp_connection = SpotifyConnection(config.SPOTIFY_CLIENT_ID, config.SPOTIFY_CLIENT_SECRET)
+    sp_object = sp_connection.connect()
+    artist_collection = ArtistCollection()
+
+    for i in range(1998, 2023):
+        print("Start querying playlists for", i)
+        playlist_results = sp_object.search(q="Deutschrap " + str(i), type="playlist")
+        playlist_results_items = playlist_results['playlists']['items']
+
+        """
+        If only the playlists created by the official Spotify account should be selected, then use the if query below.
+        If one wants to select multiple playlists from different creators, one can use the out commented code with the 
+        for-loop.
+        """
+        # for j in range(min(4, len(playlist_results_items))):
+        if playlist_results_items[0]['owner']['id'] == 'spotify':
+            query_playlist = playlist_results_items[0]
+            # query_playlist = playlist_results_items[j]
+            playlist = sp_object.playlist(query_playlist['id'])
+            tracks = list(map(lambda tr: tr['track']['artists'], playlist['tracks']['items']))
+
+            for track in tracks:
+                for artist in track:
+                    artist_collection.append_item(artist['name'], i)
+
+    artist_collection.write_to_csv('data/artist_data_single.csv')
