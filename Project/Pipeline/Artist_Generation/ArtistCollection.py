@@ -77,4 +77,4 @@ def collect_artist_data() -> None:
                 for artist in track:
                     artist_collection.append_item(artist['name'], i)
 
-    artist_collection.write_to_csv('data/artist_data_single.csv')
+    artist_collection.write_to_csv('data/artist_data.csv')

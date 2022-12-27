@@ -3,14 +3,15 @@ import json
 from typing import List
 
 import requests
-from IPython.core.display_functions import display
 from bs4 import BeautifulSoup
-from ipywidgets import IntProgress
 
 from Pipeline.Lyrics_Scraping.GeniusArtistExtraction import GeniusArtists
 from Pipeline.Lyrics_Scraping.Song import Song
-from Pipeline.Lyrics_Scraping.config import BASE, CLIENT_ACCESS_TOKEN
+from Pipeline.Lyrics_Scraping.config import CLIENT_ACCESS_TOKEN
 from Pipeline.Util.Util import get_html_resource_to_json
+
+SONGS_PER_ARTIST = 15
+BASE = "https://api.genius.com"
 
 
 class GeniusSongs:
@@ -35,7 +36,7 @@ def read_song_list(filename: str) -> GeniusSongs:
     return songs
 
 
-def get_songs_information(song_ids: List[str], artist_id: str, artist_name: str) -> GeniusSongs:
+def get_songs_information(song_ids: List[str], artist_id: str, artist_name: str) -> GeniusSongs | None:
     song_list = GeniusSongs()
 
     print("Scraping songs information of artist {}".format(artist_name))
@@ -119,7 +120,7 @@ def get_lyrics_from_path(lyrics_path: Song) -> str:
 # This function was originally written to batch scrap all artists
 # Since we want concurrent multithreading, we must have changed it,
 # so it only processes one artist
-def batch_get_songs(artist_id: List[int], artist_name: List[str], songs_per_artist=15,
+def batch_get_songs(artist_id: List[int], artist_name: List[str], songs_per_artist=SONGS_PER_ARTIST,
                     pages_to_scrape=5) -> GeniusSongs:
     song_ids: List[str] = get_song_id_list_of_artist(artist_id, pages_to_scrape, songs_per_artist)
     print("Fetched {} songs for {}, {}".format(len(song_ids), artist_name, artist_id))
@@ -132,8 +133,8 @@ def get_songs(artists: GeniusArtists) -> GeniusSongs:
     final_songs = GeniusSongs()
     with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
         for result in executor.map(batch_get_songs,
-                                   list(artists.id_list.values())[:3],
-                                   list(artists.id_list.keys())[:3]):
+                                   list(artists.id_list.values()),
+                                   list(artists.id_list.keys())):
             final_songs.song_list.extend(result.song_list)
 
     return final_songs

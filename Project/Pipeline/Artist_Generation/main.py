@@ -7,4 +7,4 @@ if __name__ == '__main__':
     ArtistCollection object.
     """
     # collect_artist_data()
-    artist_collection: ArtistCollection = read_csv_to_artist_collection("data/artist_data_single.csv")
+    artist_collection: ArtistCollection = read_csv_to_artist_collection("data/artist_data.csv")
