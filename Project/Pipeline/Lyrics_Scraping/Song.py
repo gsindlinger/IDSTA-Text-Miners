@@ -25,6 +25,9 @@ class Song:
         self.lyrics_status: str | None = lyrics_status
         self.lyrics: str | None = lyrics
 
+    def __str__(self):
+        return f"Title: {self.title}, Artist: {self.artist}, Id: {self.genius_track_id}"
+
 
 def get_song_mapping() -> Dict:
     type_keyword = {"type": "keyword"}
@@ -48,7 +51,7 @@ def get_song_mapping() -> Dict:
             case "title":
                 property_mapping.update({variable: type_mixed})
             case "album":
-                property_mapping.update({variable: type_keyword})
+                property_mapping.update({variable: type_mixed})
             case "album_cover":
                 property_mapping.update({variable: type_keyword})
             case "release_date":
@@ -72,10 +75,10 @@ def get_song_mapping() -> Dict:
             case _:
                 raise Exception("Mapping could not be found.")
 
-    return {"mappings": {
+    return {
         "dynamic": "strict",
         "properties": property_mapping
-    }}
+    }
 
 
 def dict_to_song(dict_temp: Dict) -> Song:

@@ -30,7 +30,7 @@ class GeniusSongs:
         with open(filename, 'w', encoding='utf8') as f:
             f.write(json_string)
 
-    def write_song_list_to_str(self) -> str:
+    def write_song_list_to_str(self) -> [str]:
         return [song.__dict__ for song in self.song_list]
 
     def to_song_dict(self) -> GeniusSongsDict:
