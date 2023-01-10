@@ -1,7 +1,13 @@
-from typing import Dict, List
+import json
+from typing import Dict, List, Optional
 
 import configparser
-from elasticsearch import Elasticsearch
+
+from elastic_transport import ApiResponse, ObjectApiResponse
+from elasticsearch import Elasticsearch, helpers
+
+from Pipeline.Lyrics_Scraping.GeniusLyricsExtraction import GeniusSongs
+from Pipeline.Lyrics_Scraping.Song import Song, dict_to_song
 
 
 class ElasticsearchConnection:
@@ -11,10 +17,56 @@ class ElasticsearchConnection:
         self.es = Elasticsearch(es_host, http_auth=(es_user, es_password))
 
     def create_index(self, index_name: str, mapping: Dict) -> None:
-        self.es.indices.create(index=index_name, ignore=400, body=mapping)
-        self.es.indices.close(index=index_name)
-        self.es.indices.put_settings(index=index_name, body=get_analyzer())
-        self.es.indices.open(index=index_name)
+        self.es.indices.create(index=index_name, mappings=mapping, settings=get_analyzer())
+
+    def delete_index(self, index_name: str) -> None:
+        res = self.es.indices.delete(index=index_name, ignore=[400, 404])
+        print(res)
+
+    def insert_one_data(self, index_name: str, song: Song) -> None:
+        res = self.es.index(index=index_name, id=song.genius_track_id, document=song.__dict__)
+        print(res)
+
+    def insert_bulk(self, index_name: str, songs: GeniusSongs) -> None:
+        res = self.es.bulk(index=index_name, operations=generate_docs(index_name, songs))
+        print(res)
+
+    def delete_all_entries(self, index_name: str) -> None:
+        self.es.delete_by_query(index=index_name, query={"match_all": {}})
+
+    def get_by_id(self, index_name: str, track_id: int) -> None | Song:
+        res = self.es.search(index=index_name,
+                             query={"ids": {"values": [track_id]}})
+
+        try:
+            temp_song = get_list_from_api_response(res)[0]
+            return temp_song[0]
+        except:
+            return None
+
+    def get_by_artist_id(self, index_name: str, artist_id: int) -> None | Song:
+        res = self.es.search(index=index_name,
+                             query={"bool": {"filter": {"term": {"artist_id": artist_id}}}})
+
+        try:
+            temp_song = get_list_from_api_response(res)
+            return temp_song
+        except:
+            return None
+
+
+def get_list_from_api_response(response: ApiResponse):
+    temp = response['hits']['hits']
+    return list(map(lambda song: (dict_to_song(song['_source']), song['_score']), temp))
+
+
+def generate_docs(index_name: str, songs: GeniusSongs):
+    actions = []
+    for song in songs.song_list:
+        action = {"index": {"_index": index_name, "_id": song.genius_track_id}}
+        actions.append(action)
+        actions.append(song.__dict__)
+    return actions
 
 
 def get_analyzer() -> Dict:
