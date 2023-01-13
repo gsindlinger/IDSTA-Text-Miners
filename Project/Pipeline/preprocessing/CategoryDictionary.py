@@ -1,0 +1,132 @@
+import json
+import os
+from typing import List, Dict, Tuple
+
+import gensim
+from gensim.models import Word2Vec, KeyedVectors
+from tqdm import *
+import requests
+
+URL_WORD_2_VEC_MODEL_GERMAN = "https://cloud.devmount.de/d2bc5672c523b086/german.model"
+MODEL_PATH = "data/word2vec_german.model"
+
+
+class CategoryDictionary:
+
+    def __init__(self):
+        load_word_2_vec_from_web()
+        self.categories: Dict[str, List[str]] = {}
+        # load word2vec model from https://devmount.github.io/GermanWordEmbeddings/
+        self.word2vec_model: KeyedVectors = gensim.models.KeyedVectors.load_word2vec_format(MODEL_PATH, binary=True)
+
+    def add_new_members_to_category(self, category: str,
+                                    positive_search_words: str | None = None,
+                                    negative_search_words: str | None = None,
+                                    items: int = 20) -> None:
+        positive_search_word_list = [x.strip() for x in positive_search_words.split(',')] \
+            if positive_search_words \
+            else [category]
+        # positive_search_word_list.extend([x.title() for x in positive_search_word_list[:]])
+        negative_search_word_list = [x.strip() for x in negative_search_words.split(',')] \
+            if negative_search_words \
+            else []
+        # negative_search_word_list.extend([x.title() for x in negative_search_word_list[:]])
+
+
+        # filter out words which don't appear in the corpus of the given model
+        search_word_list_filtered = [[], []]
+        for i, word_list in enumerate([positive_search_word_list, negative_search_word_list]):
+            for word in word_list:
+                if word in self.word2vec_model:
+                    search_word_list_filtered[i].append(word)
+                else:
+                    print(f"Search word could not be detected in the given model and will be ignored: {word}")
+
+        top_similar: List[Tuple[str, float]] = self.word2vec_model.most_similar(positive=search_word_list_filtered[0],
+                                                                                negative=search_word_list_filtered[1],
+                                                                                topn=items)
+
+        # filter for items which have a low similarity
+        top_similar = list(filter(lambda word_tuple: word_tuple[1] > 0.3, top_similar))
+
+        positive_search_word_list.extend(list(map(lambda x: x[0], top_similar)))
+        self.categories.update({category: positive_search_word_list})
+
+    def build_dictionary_model(self):
+        item_size = 20
+        positive_search_words_homophopic = "Schwuchtel, Homo, homo, trans, Transe, schwul, gay, lesbisch, Lesbe"
+        negative_search_words_homophobic = "Fotze, hetero, Neger"
+        self.add_new_members_to_category(category="Homophobie",
+                                         positive_search_words=positive_search_words_homophopic,
+                                         negative_search_words=negative_search_words_homophobic,
+                                         items=item_size)
+
+        positive_search_words_misogynistic = "Pussy, Bitch, Schlampe, Hure, Nutte, Fotze, " \
+                                             "ficken, Titten, Sex, Jungfrau, kochen, Vergewaltigung"
+        negative_search_words_misogynistic = "Nigger, Schwuchtel"
+        self.add_new_members_to_category(category="Frauenfeindlichkeit",
+                                         positive_search_words=positive_search_words_misogynistic,
+                                         negative_search_words=negative_search_words_misogynistic,
+                                         items=item_size)
+
+        positive_search_words_anti_disabled = "behindert, Mongo, Krueppel, Spast, Spacko, Spasti, Rollstuhl"
+        negative_search_words_anti_disabled = "schwul, Fotze"
+        self.add_new_members_to_category(category="Behindertenfeindlichkeit",
+                                         positive_search_words=positive_search_words_anti_disabled,
+                                         negative_search_words=negative_search_words_anti_disabled,
+                                         items=item_size)
+
+        positive_search_words_antisemitic = "Jude, KZ, Juedin, Israel, Judas, Holocaust"
+        negative_search_words_antisemitic = "schwul, Fotze, Neger"
+        self.add_new_members_to_category(category="Antisemitismus",
+                                         positive_search_words=positive_search_words_antisemitic,
+                                         negative_search_words=negative_search_words_antisemitic,
+                                         items=item_size)
+
+        positive_search_words_racist = "Nigga, Neger, Assi, schwarz, Sklave, Stern"
+        negative_search_words_racist = "schwul, Fotze, behindert, weiss"
+        self.add_new_members_to_category(category="Rassismus",
+                                         positive_search_words=positive_search_words_racist,
+                                         negative_search_words=negative_search_words_racist,
+                                         items=item_size)
+
+        positive_search_words_violence = "schlagen, tot, Idiot, fuck, verrecken"
+        self.add_new_members_to_category(category="Gewalt",
+                                         positive_search_words=positive_search_words_violence,
+                                         items=item_size)
+
+        positive_search_words_love = "Liebe, Freunde, zusammen"
+        self.add_new_members_to_category(category="Liebe",
+                                         positive_search_words=positive_search_words_love,
+                                         items=item_size)
+
+        positive_search_words_sadness = "traurig, zerreissen, Kummer"
+        negative_search_words_sadness = "gluecklich"
+        self.add_new_members_to_category(category="Trauer",
+                                         positive_search_words=positive_search_words_sadness,
+                                         negative_search_words=negative_search_words_sadness,
+                                         items=item_size)
+
+        self.to_json("data/categories.json")
+
+    def __str__(self):
+        return json.dumps(self.categories, sort_keys=True, indent=4)
+
+    def to_json(self, filename):
+        json_string = json.dumps(self.categories, sort_keys=True, indent=4)
+        with open(filename, 'w', encoding='utf8') as f:
+            f.write(json_string)
+
+
+def load_word_2_vec_from_web():
+    if not os.path.exists(MODEL_PATH):
+        with requests.get(URL_WORD_2_VEC_MODEL_GERMAN, stream=True) as r:
+            r.raise_for_status()
+            with open(MODEL_PATH, 'wb') as f:
+                pbar = tqdm(total=int(r.headers['Content-Length']))
+                for chunk in r.iter_content(chunk_size=8192):
+                    if chunk:  # filter out keep-alive new chunks
+                        f.write(chunk)
+                        pbar.update(len(chunk))
+
+
