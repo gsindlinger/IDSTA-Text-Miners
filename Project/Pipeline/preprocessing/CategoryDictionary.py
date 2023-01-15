@@ -7,17 +7,21 @@ from gensim.models import Word2Vec, KeyedVectors
 from tqdm import *
 import requests
 
+from Pipeline.preprocessing import Util
+
 URL_WORD_2_VEC_MODEL_GERMAN = "https://cloud.devmount.de/d2bc5672c523b086/german.model"
 MODEL_PATH = "data/word2vec_german.model"
 
 
 class CategoryDictionary:
 
-    def __init__(self):
-        load_word_2_vec_from_web()
-        self.categories: Dict[str, List[str]] = {}
-        # load word2vec model from https://devmount.github.io/GermanWordEmbeddings/
-        self.word2vec_model: KeyedVectors = gensim.models.KeyedVectors.load_word2vec_format(MODEL_PATH, binary=True)
+    def __init__(self, should_load_model: bool | None = True):
+        self.categories: Dict[str, Tuple[str, str]] = {}
+        if should_load_model:
+            load_word_2_vec_from_web()
+            # load word2vec model from https://devmount.github.io/GermanWordEmbeddings/
+            self.word2vec_model: KeyedVectors | None = gensim.models.KeyedVectors.load_word2vec_format(MODEL_PATH, binary=True)
+
 
     def add_new_members_to_category(self, category: str,
                                     positive_search_words: str | None = None,
@@ -31,7 +35,6 @@ class CategoryDictionary:
             if negative_search_words \
             else []
         # negative_search_word_list.extend([x.title() for x in negative_search_word_list[:]])
-
 
         # filter out words which don't appear in the corpus of the given model
         search_word_list_filtered = [[], []]
@@ -48,9 +51,16 @@ class CategoryDictionary:
 
         # filter for items which have a low similarity
         top_similar = list(filter(lambda word_tuple: word_tuple[1] > 0.3, top_similar))
+        # filter for items which don't contain of multiple words like 'schwul_lesbisch'
+        top_similar = list(filter(lambda word_tuple: "_" not in word_tuple[0], top_similar))
 
         positive_search_word_list.extend(list(map(lambda x: x[0], top_similar)))
-        self.categories.update({category: positive_search_word_list})
+        positive_search_word_list_lemmatized = list(map(lambda term: Util.lemmatize(term), positive_search_word_list))
+
+        positive_search_words_dict = build_original_lemmatized_dict(positive_search_word_list,
+                                                                    positive_search_word_list_lemmatized)
+
+        self.categories.update({category: positive_search_words_dict})
 
     def build_dictionary_model(self):
         item_size = 20
@@ -118,6 +128,25 @@ class CategoryDictionary:
             f.write(json_string)
 
 
+def read_from_json(filename: str) -> CategoryDictionary:
+    categories = CategoryDictionary(should_load_model=False)
+    with open(filename, 'r') as f:
+        json_data = f.read()
+
+    dict_values = json.loads(json_data)
+    # flatten the dictionary
+    # songs.song_list = [item for sublist in [list(songs.values()) for songs in dict_values] for item in sublist]
+    categories.categories = {category: list(map(lambda x: tuple(x), value_list)) for category, value_list in json.loads(json_data).items()}
+    return categories
+
+
+def build_original_lemmatized_dict(list1: List[str], list2: List[str]):
+    filtered_zip: List[Tuple[str, str]] = list(map(lambda x: (x[0], x[0]) if '--' in x[1] else x,
+                                                   list(zip(list1, list2))))
+    filtered_zip = list(map(lambda x: (x[0], x[1].lower()), filtered_zip))
+    return filtered_zip
+
+
 def load_word_2_vec_from_web():
     if not os.path.exists(MODEL_PATH):
         with requests.get(URL_WORD_2_VEC_MODEL_GERMAN, stream=True) as r:
@@ -128,5 +157,3 @@ def load_word_2_vec_from_web():
                     if chunk:  # filter out keep-alive new chunks
                         f.write(chunk)
                         pbar.update(len(chunk))
-
-

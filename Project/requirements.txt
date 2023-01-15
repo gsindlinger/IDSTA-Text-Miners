@@ -4,3 +4,5 @@ lyricsgenius~=3.0.1
 bs4~=0.0.1
 tqdm~=4.64.1
 beautifulsoup4~=4.11.1
+spacy~=3.4.4
+gensim~=4.3.0

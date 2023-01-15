@@ -88,8 +88,6 @@ def read_song_dict(filename: str):
     with open(filename, 'r') as f:
         json_data = f.read()
 
-    dict_values = json.loads(json_data)
-
     songs.song_dict = [{list(artist_dict.keys())[0]: [dict_to_song(song) for song in list(artist_dict.values())[0]]}
                        for artist_dict in json.loads(json_data)]
 
