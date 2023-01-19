@@ -132,5 +132,7 @@ Later on, as we prepare our data to be used for the different NLP models, we may
 | Dec 11 | Simon Körner        | Assignment 2 - Exercise 3 |
 | Jan 16 | Johannes Sindlinger | Assignment 3 - Exercise 3 |
 | Jan 15 | Gal Lebel           | Assignment 3 - Exercise 1 |
+| Jan 19 | Johannes Sindlinger | Assignment 3 - Exercise 4 |
+
 
 
