@@ -55,7 +55,7 @@ class CategoryDictionary:
         top_similar = list(filter(lambda word_tuple: "_" not in word_tuple[0], top_similar))
 
         positive_search_word_list.extend(list(map(lambda x: x[0], top_similar)))
-        positive_search_word_list_lemmatized = list(map(lambda term: Util.lemmatize(term), positive_search_word_list))
+        positive_search_word_list_lemmatized = list(map(lambda term: Util.lemmatize(term)[0], positive_search_word_list))
 
         positive_search_words_dict = build_original_lemmatized_dict(positive_search_word_list,
                                                                     positive_search_word_list_lemmatized)
@@ -105,7 +105,7 @@ class CategoryDictionary:
                                          positive_search_words=positive_search_words_violence,
                                          items=item_size)
 
-        positive_search_words_love = "Liebe, Freunde, zusammen"
+        positive_search_words_love = "Liebe, Freunde, zusammen, Liebeslied, Freundin"
         self.add_new_members_to_category(category="Liebe",
                                          positive_search_words=positive_search_words_love,
                                          items=item_size)

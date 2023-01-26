@@ -6,3 +6,5 @@ tqdm~=4.64.1
 beautifulsoup4~=4.11.1
 spacy~=3.4.4
 gensim~=4.3.0
+transformers
+torch

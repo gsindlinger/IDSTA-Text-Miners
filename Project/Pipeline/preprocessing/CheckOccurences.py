@@ -35,7 +35,7 @@ def check_occurences_song_already_lemmatized(song: Song) -> None:
         preprocessed_lyrics = Util.remove_trash_words(preprocessed_lyrics)
         preprocessed_lyrics = Util.remove_symbols(preprocessed_lyrics)
         '''
-        check_against_category_without_mapping(preprocessed_lyrics.lower(), song, category, category_values)
+        check_against_category_without_mapping(preprocessed_lyrics.lower().strip(), song, category, category_values)
 
 
 def check_occurences_song(song: Song) -> None:
@@ -85,5 +85,7 @@ def sum_occurences_over_time(songs_dict) -> pd.DataFrame:
         if song.release_date not in [None, "unidentified"]:
             year = song.release_date[0:4]
             for category, matched_word_list in song.matched_categories.items():
-                results.at[category, year] = results.at[category, year] + [sum(count for _, count, _ in matched_word_list)]
+                if year in columns:
+                    results.at[category, year] = results.at[category, year] + \
+                                                 [sum(count for _, count, _ in matched_word_list)]
     return results

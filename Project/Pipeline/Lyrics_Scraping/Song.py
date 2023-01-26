@@ -8,7 +8,8 @@ class Song:
                  album_cover=None, release_date=None, featured_artists=None,
                  featured_artists_pics=None, producer_artists=None, writer_artists=None,
                  primary_artist_picture=None, lyrics_path=None, lyrics_status=None,
-                 lyrics=None, matched_categories=None, processed_lyrics_text=None):
+                 lyrics=None, matched_categories=None, processed_lyrics_text=None,
+                 sentiment_value=None, toxicity_value=None):
         self.genius_track_id: str | None = genius_track_id
         self.genius_album_id: str | None = genius_album_id
         self.artist_name: str | None = artist_name
@@ -27,6 +28,8 @@ class Song:
         self.lyrics: str | None = lyrics
         self.processed_lyrics_text: str | None = processed_lyrics_text
         self.matched_categories: Dict[str, List[str]] | None = matched_categories
+        self.sentiment_value: float | None = sentiment_value
+        self.toxicity_value: float | None = toxicity_value
 
 
 def dict_to_song(dict_temp: Dict) -> Song:
