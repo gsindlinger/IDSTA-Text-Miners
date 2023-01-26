@@ -595,6 +595,7 @@ cython_debug/
 # website: https://kit.svelte.dev/
 
 .svelte-kit/
+node_modules
 package
 
 ### VisualStudioCode ###
