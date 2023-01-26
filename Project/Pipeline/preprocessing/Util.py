@@ -1,3 +1,5 @@
+from typing import Tuple, Dict
+
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
 
@@ -19,7 +21,12 @@ def remove_stopwords_and_punctuation(lyrics: str) -> str:
     return word_list
 
 
-def lemmatize(lyrics: str) -> str:
+def remove_symbols(lyrics: str) -> str:
+    return lyrics.replace("'", "").replace('"', "")
+
+
+def lemmatize(lyrics: str) -> tuple[str, dict[str, str]]:
+    word_mapping = {}
     lemmatized_lyrics = ""
     nlp = spacy.load("de_core_news_sm", exclude=["parser", "ner", "tagger"])
     # noinspection DuplicatedCode
@@ -28,10 +35,11 @@ def lemmatize(lyrics: str) -> str:
             if word_temp.lemma_ not in STOP_WORDS and word_temp.has_vector:
                 if not word_temp.is_punct:
                     lemmatized_lyrics += word_temp.lemma_ + " "
+                    word_mapping[word_temp.text] = word_temp.lemma_
         if line == "":
             continue
 
-    return lemmatized_lyrics.strip()
+    return lemmatized_lyrics.strip(), word_mapping
 
 
 # remove trash words
@@ -53,6 +61,12 @@ def remove_trash_words(lyrics: str) -> str:
     for word in lyrics.split():
         if not word.lower() in trash_words:
             clean_song += word + " "
-        else:
-            print(word)
     return clean_song
+
+
+def reverse_dict(dict_temp: Dict) -> Dict:
+    inv_map = {}
+    for k, v in dict_temp.items():
+        inv_map[v] = inv_map.get(v, []) + [k]
+
+    return inv_map

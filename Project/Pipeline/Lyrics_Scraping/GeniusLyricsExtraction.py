@@ -26,7 +26,7 @@ class GeniusSongs:
         return len(self.song_list)
 
     def write_song_list_to_json(self, filename: str) -> None:
-        json_string = json.dumps(self.write_song_list_to_str(), indent=3)
+        json_string = json.dumps(self.write_song_list_to_str(), indent=2)
         with open(filename, 'w', encoding='utf8') as f:
             f.write(json_string)
 
@@ -44,7 +44,7 @@ class GeniusSongs:
 
 
 def write_song_list_to_str(list) -> str:
-    return [song.__dict__ for song in list]
+    return {ind: song.__dict__ for ind, song in enumerate(list)}
 
 
 class GeniusSongsDict:
@@ -53,7 +53,7 @@ class GeniusSongsDict:
 
     def write_song_dict_to_json(self, filename: str) -> None:
         json_string = json.dumps([{artist_name: write_song_list_to_str(song_list)}
-                                  for artist_name, song_list in self.song_dict.items()], indent=3)
+                                  for artist_name, song_list in self.song_dict.items()], indent=2)
         with open(filename, 'w', encoding='utf8') as f:
             f.write(json_string)
 
@@ -206,6 +206,6 @@ def get_songs(artists: GeniusArtists) -> Dict[str, GeniusSongs]:
         for result in executor.map(batch_get_songs,
                                    list(artists.id_list.values()),
                                    list(artists.id_list.keys())):
-            if len(result.song_list > 0):
+            if len(result.song_list) > 0:
                 final_songs.song_list.extend(result.song_list)
     return final_songs
