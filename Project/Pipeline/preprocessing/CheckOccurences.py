@@ -23,6 +23,7 @@ def check_occurences_songs(songs: GeniusSongs) -> None:
     @param songs:
     @return:
     """
+    print("start checking occurences of categories")
     with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
         list(tqdm(executor.map(check_occurences_song_already_lemmatized, songs.song_list), total=len(songs.song_list)))
 

@@ -8,3 +8,4 @@ spacy~=3.4.4
 gensim~=4.3.0
 transformers
 torch
+germansentiment
