@@ -26,7 +26,7 @@ class GeniusSongs:
         return len(self.song_list)
 
     def write_song_list_to_json(self, filename: str) -> None:
-        json_string = json.dumps(self.write_song_list_to_str(), indent=3)
+        json_string = json.dumps(self.write_song_list_to_str(), indent=2)
         with open(filename, 'w', encoding='utf8') as f:
             f.write(json_string)
 
@@ -44,7 +44,7 @@ class GeniusSongs:
 
 
 def write_song_list_to_str(list) -> str:
-    return [song.__dict__ for song in list]
+    return {ind: song.__dict__ for ind, song in enumerate(list)}
 
 
 class GeniusSongsDict:
@@ -53,7 +53,7 @@ class GeniusSongsDict:
 
     def write_song_dict_to_json(self, filename: str) -> None:
         json_string = json.dumps([{artist_name: write_song_list_to_str(song_list)}
-                                  for artist_name, song_list in self.song_dict.items()], indent=3)
+                                  for artist_name, song_list in self.song_dict.items()], indent=2)
         with open(filename, 'w', encoding='utf8') as f:
             f.write(json_string)
 
@@ -72,6 +72,17 @@ def read_song_list(filename: str) -> GeniusSongs:
     return songs
 
 
+def read_song_dict_to_list(filename: str):
+    songs = GeniusSongs()
+    with open(filename, 'r') as f:
+        json_data = f.read()
+
+    dict_values = list(json.loads(json_data).values())
+    # flatten the dictionary
+    songs.song_list = [item for sublist in [list(songs.values()) for songs in dict_values] for item in sublist]
+    return songs
+
+
 def read_song_dict(filename: str):
     songs = GeniusSongsDict()
     with open(filename, 'r') as f:
@@ -79,6 +90,21 @@ def read_song_dict(filename: str):
 
     songs.song_dict = [{list(artist_dict.keys())[0]: [dict_to_song(song) for song in list(artist_dict.values())[0]]}
                        for artist_dict in json.loads(json_data)]
+
+    return songs
+
+
+# method is needed because the structure of the lyrics json used by Gal looked a bit different to that one
+# of the GeniusSongsDict class
+def read_song_list_from_json_dict(filename: str):
+    songs = GeniusSongs()
+    with open(filename, 'r') as f:
+        json_data = f.read()
+
+    dict_values = list(json.loads(json_data).values())
+    # flatten the dictionary
+    songs.song_list = [dict_to_song(item) for sublist in [list(songs.values()) for songs in dict_values] for item in sublist]
+    return songs
 
 
 def get_songs_information(song_ids: List[str], artist_id: str, artist_name: str) -> GeniusSongs | None:
@@ -180,6 +206,6 @@ def get_songs(artists: GeniusArtists) -> Dict[str, GeniusSongs]:
         for result in executor.map(batch_get_songs,
                                    list(artists.id_list.values()),
                                    list(artists.id_list.keys())):
-            if len(result.song_list > 0):
+            if len(result.song_list) > 0:
                 final_songs.song_list.extend(result.song_list)
     return final_songs
