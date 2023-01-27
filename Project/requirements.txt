@@ -1,5 +1,6 @@
 spotipy~=2.21.0
 requests~=2.28.1
+elasticsearch
 lyricsgenius~=3.0.1
 bs4~=0.0.1
 tqdm~=4.64.1
@@ -9,3 +10,4 @@ gensim~=4.3.0
 transformers
 torch
 germansentiment
+configparser
