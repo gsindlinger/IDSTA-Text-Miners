@@ -1,7 +1,7 @@
 from Pipeline.Lyrics_Scraping import GeniusLyricsExtraction
 from Pipeline.Lyrics_Scraping.GeniusLyricsExtraction import GeniusSongsDict, GeniusSongs
-from Pipeline.preprocessing import CheckOccurences, PretrainedModels
-from Pipeline.preprocessing.CategoryDictionary import CategoryDictionary, read_from_json
+from Pipeline.Analysis import CheckOccurences, PretrainedModels
+from Pipeline.Analysis.CategoryDictionary import CategoryDictionary, read_from_json
 
 if __name__ == '__main__':
     '''

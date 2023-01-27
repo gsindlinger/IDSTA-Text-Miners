@@ -7,7 +7,7 @@ from gensim.models import Word2Vec, KeyedVectors
 from tqdm import *
 import requests
 
-from Pipeline.preprocessing import Util
+from Pipeline.Analysis import Util
 
 URL_WORD_2_VEC_MODEL_GERMAN = "https://cloud.devmount.de/d2bc5672c523b086/german.model"
 MODEL_PATH = "data/word2vec_german.model"

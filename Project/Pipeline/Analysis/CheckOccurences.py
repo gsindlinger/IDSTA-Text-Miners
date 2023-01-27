@@ -6,7 +6,7 @@ from typing import Tuple, Dict, List
 import pandas as pd
 from Pipeline.Lyrics_Scraping.GeniusLyricsExtraction import GeniusSongs
 from Pipeline.Lyrics_Scraping.Song import Song
-from Pipeline.preprocessing.CategoryDictionary import CategoryDictionary, read_from_json
+from Pipeline.Analysis.CategoryDictionary import CategoryDictionary, read_from_json
 import Util
 from tqdm import *
 
