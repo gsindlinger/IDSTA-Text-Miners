@@ -8,7 +8,6 @@ from bs4 import BeautifulSoup
 from Pipeline.Lyrics_Scraping.GeniusArtistExtraction import GeniusArtists
 from Pipeline.Lyrics_Scraping.Song import Song, dict_to_song
 from Pipeline.Lyrics_Scraping.config import CLIENT_ACCESS_TOKEN
-from Pipeline.Util.Util import get_html_resource_to_json
 
 SONGS_PER_ARTIST = 15
 BASE = "https://api.genius.com"
@@ -103,7 +102,8 @@ def read_song_list_from_json_dict(filename: str):
 
     dict_values = list(json.loads(json_data).values())
     # flatten the dictionary
-    songs.song_list = [dict_to_song(item) for sublist in [list(songs.values()) for songs in dict_values] for item in sublist]
+    songs.song_list = [dict_to_song(item) for sublist in [list(songs.values()) for songs in dict_values] for item in
+                       sublist]
     return songs
 
 
@@ -209,3 +209,19 @@ def get_songs(artists: GeniusArtists) -> Dict[str, GeniusSongs]:
             if len(result.song_list) > 0:
                 final_songs.song_list.extend(result.song_list)
     return final_songs
+
+
+def get_html_resource_to_json(base: str, path: str, token: str, headers=None, params=None):
+    '''Send request and get response in json format.'''
+    # Generate request URL
+    requrl = '/'.join([base, path])
+    token = "Bearer {}".format(token)
+    if headers:
+        headers['Authorization'] = token
+    else:
+        headers = {"Authorization": token}
+
+    # Get response object from querying genius api
+    response = requests.get(url=requrl, params=params, headers=headers)
+    response.raise_for_status()
+    return response.json()
