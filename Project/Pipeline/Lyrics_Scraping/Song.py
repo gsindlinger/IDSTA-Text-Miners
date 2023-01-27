@@ -26,7 +26,7 @@ class Song:
         self.lyrics_path: str | None = lyrics_path
         self.lyrics_status: str | None = lyrics_status
         self.lyrics: str | None = lyrics
-        self.processed_lyrics_text: str | None = processed_lyrics_text
+        self.processed_lyrics_text: List[str] | None = processed_lyrics_text
         self.matched_categories: Dict[str, List[str]] | None = matched_categories
         self.sentiment_value: float | None = sentiment_value
         self.toxicity_value: float | None = toxicity_value
@@ -88,58 +88,6 @@ def get_song_mapping() -> Dict:
 
     def __str__(self):
         return f"Title: {self.title}, Artist: {self.artist}, Id: {self.genius_track_id}"
-
-
-def get_song_mapping() -> Dict:
-    type_keyword = {"type": "keyword"}
-    type_text = {"type": "text"}
-    type_date = {"type": "date"}
-    type_mixed = {"type": "text",
-                  "fields": {"raw": {"type": "keyword"}}}
-
-    song_helper = Song()
-    property_mapping = {}
-    for variable, _ in song_helper.__dict__.items():
-        match variable:
-            case "genius_track_id":
-                property_mapping.update({variable: type_keyword})
-            case "genius_album_id":
-                property_mapping.update({variable: type_keyword})
-            case "artist_name":
-                property_mapping.update({variable: type_mixed})
-            case "artist_id":
-                property_mapping.update({variable: type_keyword})
-            case "title":
-                property_mapping.update({variable: type_mixed})
-            case "album":
-                property_mapping.update({variable: type_mixed})
-            case "album_cover":
-                property_mapping.update({variable: type_keyword})
-            case "release_date":
-                property_mapping.update({variable: type_date})
-            case "featured_artists":
-                property_mapping.update({variable: type_keyword})
-            case "featured_artist_pics":
-                property_mapping.update({variable: type_keyword})
-            case "producer_artists":
-                property_mapping.update({variable: type_keyword})
-            case "writer_artists":
-                property_mapping.update({variable: type_keyword})
-            case "primary_artist_picture":
-                property_mapping.update({variable: type_keyword})
-            case "lyrics_path":
-                property_mapping.update({variable: type_keyword})
-            case "lyrics_status":
-                property_mapping.update({variable: type_keyword})
-            case "lyrics":
-                property_mapping.update({variable: type_text})
-            case _:
-                raise Exception("Mapping could not be found.")
-
-    return {
-        "dynamic": "strict",
-        "properties": property_mapping
-    }
 
 
 def dict_to_song(dict_temp: Dict) -> Song:
