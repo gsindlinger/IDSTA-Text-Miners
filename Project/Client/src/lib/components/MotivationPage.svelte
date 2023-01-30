@@ -21,11 +21,14 @@
 
 <style>
 .page-content-scroll {
+    display: flex;
 	width: 100%;
     height: 100vh;
 	background-image: linear-gradient(to bottom, rgba(117, 19, 93, 1), rgba(245, 246, 252, 0.5), rgb(50, 64, 255, 1)), 
 	url('../images/background-images/1.jpg');
 	background-size: cover;
+    align-items: center;
+    justify-content: center;
 }
 
 .title {

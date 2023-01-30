@@ -5,20 +5,21 @@
 	import { onMount } from 'svelte';
 
 	let ready = false;
-	onMount(() => ready = true);
+	onMount(() => setTimeout(() => ready = true, 500));
 </script>
 
-{#if ready}
+
 	<div class="page-content">
-		<div class="title" in:fly="{{ y: 200, duration: 1500 }}">
+		{#if ready}
+		<div class="title" in:fly="{{ y: 200, duration: 2000 }}">
 			<h3>Heidelberg University</h3>
 			<h3>Data Science for Text Analytics</h3>
 			<h3>Winter Term 2022 / 2023</h3>
 			<h3>Simon Körner, Gal Lebel, Gabriel Sindlinger</h3>
 			<h1>hate, discrimination & racism in german rap - a text analytics approach</h1>
 		</div>
+		{/if}
 	</div>
-{/if}
 
 <style>
 .page-content {
