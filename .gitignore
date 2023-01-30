@@ -446,7 +446,8 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+Server/*/lib/
+Pipeline/*/lib/
 lib64/
 parts/
 sdist/
