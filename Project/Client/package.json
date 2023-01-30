@@ -36,6 +36,7 @@
 	"dependencies": {
 		"@fontsource/libre-baskerville": "^4.5.10",
 		"@fontsource/nixie-one": "^4.5.10",
-		"@fontsource/space-mono": "^4.5.12"
+		"@fontsource/space-mono": "^4.5.12",
+		"svelte-typewriter": "^3.1.4"
 	}
 }

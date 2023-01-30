@@ -1,6 +1,10 @@
 <script>
+// @ts-nocheck
+
     import Chevron from '$lib/components/Chevron.svelte';
 	import { fly } from 'svelte/transition';
+    import { cascade } from 'svelte-typewriter'
+
 
     export let active;
     let isLoaded = false;
@@ -13,8 +17,9 @@
 
 <div class="page-content-scroll">
     {#if active || isLoaded}
-    <div class="title" in:fly="{{ x: 1000, duration: isLoaded ? 0 : 1500 }}">
+    <div class="title" use:cascade={{ interval: 100 }}>
         <h1>motivation</h1>
+        <h3>test</h3>
     </div>
     {/if}
 </div>

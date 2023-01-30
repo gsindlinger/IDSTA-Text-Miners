@@ -5,7 +5,6 @@
 	import Scrolly from "$lib/components/Scrolly.svelte";
 
 	let scrollStep;
-	$: console.log(scrollStep)
 </script>
 
 
