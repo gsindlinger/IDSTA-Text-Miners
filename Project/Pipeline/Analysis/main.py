@@ -1,7 +1,6 @@
 from Pipeline.Lyrics_Scraping import GeniusLyricsExtraction
-from Pipeline.Lyrics_Scraping.GeniusLyricsExtraction import GeniusSongsDict, GeniusSongs
-from Pipeline.Analysis import CheckOccurences, PretrainedModels
-from Pipeline.Analysis.CategoryDictionary import CategoryDictionary, read_from_json
+from Pipeline.Lyrics_Scraping.GeniusLyricsExtraction import GeniusSongs
+from Pipeline.Analysis import CheckOccurences
 
 if __name__ == '__main__':
     '''
@@ -13,7 +12,7 @@ if __name__ == '__main__':
     '''
 
     # read songs from json file
-    songs_list: GeniusSongs = GeniusLyricsExtraction\
+    songs_list: GeniusSongs = GeniusLyricsExtraction \
         .read_song_list("data/punctuated_german_lyrics_updated_list_structure.json")
 
     # check occurrences of words withing the categories

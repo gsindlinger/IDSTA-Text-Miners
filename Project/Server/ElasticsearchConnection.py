@@ -1,10 +1,10 @@
-import json
-from typing import Dict, List, Optional
+import random
+from typing import Dict, List
 
 import configparser
 
-from elastic_transport import ApiResponse, ObjectApiResponse
-from elasticsearch import Elasticsearch, helpers
+from elastic_transport import ApiResponse
+from elasticsearch import Elasticsearch
 
 from Pipeline.Lyrics_Scraping.GeniusLyricsExtraction import GeniusSongs
 from Pipeline.Lyrics_Scraping.Song import Song, dict_to_song
@@ -44,6 +44,18 @@ class ElasticsearchConnection:
         except:
             return None
 
+    def search_in_title_and_lyrics(self, index_name: str, search_word: str) -> None | List[Song]:
+        res = self.es.search(index=index_name,
+                             query={"multi_match": {
+                                 "query": search_word,
+                                 "fields": ["title^3", "lyrics"]
+                             }})
+
+        try:
+            return get_list_from_api_response(res)
+        except:
+            return None
+
     def get_by_artist_id(self, index_name: str, artist_id: int) -> None | Song:
         res = self.es.search(index=index_name,
                              query={"bool": {"filter": {"term": {"artist_id": artist_id}}}})
@@ -53,6 +65,20 @@ class ElasticsearchConnection:
             return temp_song
         except:
             return None
+
+    def get_random_song(self, index_name: str):
+        res = self.es.search(index=index_name,
+                             size=1,
+                             query={
+                                 "function_score": {
+                                     "functions": [
+                                         {
+                                             "random_score": {
+                                                 "seed": random.Random().randint()
+                                             }
+                                         }
+                                     ]
+                                 }})
 
 
 def get_list_from_api_response(response: ApiResponse):
@@ -80,7 +106,7 @@ def get_analyzer() -> Dict:
 
 def get_es_variables() -> List[str]:
     config = configparser.ConfigParser()
-    config.read("../env/elasticsearch.env")
+    config.read("env/elasticsearch.env")
     es_user = config["DEFAULT"]["ELASTIC_USERNAME"]
     es_password = config["DEFAULT"]["ELASTIC_PASSWORD"]
     return [es_user, es_password]

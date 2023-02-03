@@ -15,7 +15,7 @@ $base: 0.6rem;
  position: fixed;
  bottom: 0;
  right: 0;
- margin: 10rem;
+ margin: 10rem 7rem;
 }
 
 .chevron {
@@ -41,7 +41,7 @@ $base: 0.6rem;
  position: absolute;
  height: 100%;
  width: 50%;
- background: black;
+ @apply bg-gray-400;
 }
 
 .chevron:before {
