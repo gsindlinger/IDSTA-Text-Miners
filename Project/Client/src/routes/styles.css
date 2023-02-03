@@ -47,10 +47,11 @@ time, mark, audio, video {
 }
 
 body {
-	lineheight: 1;
+	lineheight: 150%;
 	min-height: 100vh;
 	overflow-y: scroll;
 	overflow-x: hidden;
+    @apply text-gray-800;
 
 }
 
@@ -129,7 +130,7 @@ h1 {
 	letter-spacing: 0.2rem;
 	font-size: 5rem;
 	text-align: left;
-	@apply text-black;
+	@apply text-gray-400;
 }
 
 h3 {
@@ -137,12 +138,13 @@ h3 {
 	font-size: 1rem;
 	font-weight: normal;
 	padding: .1rem 0;
-	@apply: text-gray-700
+	@apply: text-gray-100
 }
 
 p {
 	font-family: var(--font-body);
 	font-size: 1rem;
+    line-height: 150%;
 }
 
 /*Anything outside of media queries is for MOBILE
@@ -161,13 +163,71 @@ p {
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
     html {
-        font-size: 11px;
+        font-size: 10px;
     }
  }
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) { 
     html {
+        font-size: 12px;
+    }
+}
+
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1400px) { 
+    html {
         font-size: 14px;
     }
+}
+
+.header-font {
+    font-family: var(--font-nixie);
+	letter-spacing: 0.2rem;
+	font-size: 2.7rem;
+    font-weight: bold;
+	text-align: left;
+    @apply text-gray-400;
+}
+
+.header-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 3rem;
+}
+
+.page-content-motivation {
+	display: flex;
+    flex-direction: column;
+	align-items: center;
+	height: 100vh;
+	width: 100%;
+	background-size: cover;
+}
+
+.content-wrapper {
+    height: 95%;
+    width: 80%;
+    left: 20%;
+    position: absolute;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+}
+
+.text-wrapper {
+    background-color: rgba(255,255,255,0.5);
+    display: flex;
+    justify-content: left;
+    padding: 2rem;
+    align-items: center;
+}
+
+.text-wrapper p {
+    width: 100%;
+    font-size: 1.2rem;
+    line-height: 200%;
+    padding: 2rem;
 }

@@ -1,8 +1,5 @@
-import concurrent
-
 from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline, Pipeline
-import torch
 
 from Pipeline.Lyrics_Scraping.GeniusLyricsExtraction import GeniusSongs
 from Pipeline.Lyrics_Scraping.Song import Song

@@ -9,7 +9,7 @@
 </script>
 
 
-	<div class="page-content">
+	<div class="page-content background-title-page">
 		{#if ready}
 		<div class="title" in:fly="{{ y: 200, duration: 2000 }}">
 			<h3>Heidelberg University</h3>
@@ -29,9 +29,12 @@
 	align-items: center;
 	height: 100vh;
 	width: 100%;
-	background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.5), rgba(117, 19, 93, 1)), 
-	url('../images/background-images/11.jpg');
 	background-size: cover;
+}
+
+.background-title-page {
+	background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.3), rgb(5, 9, 54)), 
+	url('../images/background-images/11.jpg');
 }
 
 .title {

@@ -1,10 +1,8 @@
 from lyricsgenius import Genius
 
-from Pipeline.Artist_Generation.ArtistCollection import read_csv_to_artist_collection
 from Pipeline.Lyrics_Scraping import GeniusArtistExtraction
 from Pipeline.Lyrics_Scraping.GeniusArtistExtraction import GeniusArtists
-from Pipeline.Lyrics_Scraping.GeniusLyricsExtraction import get_songs, GeniusSongs, read_song_list, GeniusSongsDict, \
-    read_song_dict
+from Pipeline.Lyrics_Scraping.GeniusLyricsExtraction import get_songs, GeniusSongs, read_song_list, GeniusSongsDict
 from Pipeline.Lyrics_Scraping.config import CLIENT_ACCESS_TOKEN
 
 if __name__ == '__main__':

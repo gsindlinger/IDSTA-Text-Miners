@@ -6,7 +6,8 @@ import requests
 from bs4 import BeautifulSoup
 
 from Pipeline.Lyrics_Scraping.GeniusArtistExtraction import GeniusArtists
-from Pipeline.Lyrics_Scraping.Song import Song, dict_to_song
+from Pipeline.Lyrics_Scraping import Song
+from Pipeline.Lyrics_Scraping.Song import dict_to_song
 from Pipeline.Lyrics_Scraping.config import CLIENT_ACCESS_TOKEN
 
 SONGS_PER_ARTIST = 15
