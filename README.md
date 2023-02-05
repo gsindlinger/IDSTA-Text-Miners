@@ -112,6 +112,7 @@ Later on, as we prepare our data to be used for the different NLP models, we may
 | Dec 27/28 | Johannes Sindlinger           | Elasticsearch Connection                                                             |
 | Jan 12/13 | Johannes Sindlinger           | Discrimination Dictionary via Word2Vec                                                             |
 | Jan 13 | Johannes Sindlinger           | Counting Occurences via Word2Vec and Lemmatization                                                          |
+| Feb 1  |  Gal Lebel          |   Zero-Shot-Classification of song's lines     |
 
 
 
