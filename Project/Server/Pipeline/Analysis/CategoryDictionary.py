@@ -16,7 +16,7 @@ MODEL_PATH = "data/word2vec_german.model"
 class CategoryDictionary:
 
     def __init__(self, should_load_model: bool | None = True):
-        self.categories: Dict[str, Tuple[str, str]] = {}
+        self.categories: Dict[str, str] = {}
         if should_load_model:
             load_word_2_vec_from_web()
             # load word2vec model from https://devmount.github.io/GermanWordEmbeddings/
@@ -55,12 +55,7 @@ class CategoryDictionary:
         top_similar = list(filter(lambda word_tuple: "_" not in word_tuple[0], top_similar))
 
         positive_search_word_list.extend(list(map(lambda x: x[0], top_similar)))
-        positive_search_word_list_lemmatized = list(map(lambda term: Util.lemmatize(term)[0], positive_search_word_list))
-
-        positive_search_words_dict = build_original_lemmatized_dict(positive_search_word_list,
-                                                                    positive_search_word_list_lemmatized)
-
-        self.categories.update({category: positive_search_words_dict})
+        self.categories.update({category: positive_search_word_list})
 
     def build_dictionary_model(self):
         item_size = 20
@@ -134,9 +129,7 @@ def read_from_json(filename: str) -> CategoryDictionary:
         json_data = f.read()
 
     dict_values = json.loads(json_data)
-    # flatten the dictionary
-    # songs.song_list = [item for sublist in [list(songs.values()) for songs in dict_values] for item in sublist]
-    categories.categories = {category: list(map(lambda x: tuple(x), value_list)) for category, value_list in json.loads(json_data).items()}
+    categories.categories = dict_values
     return categories
 
 

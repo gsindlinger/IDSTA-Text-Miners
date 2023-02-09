@@ -1,0 +1,16 @@
+spotipy~=2.21.0
+requests~=2.28.1
+elasticsearch~=8.6.0
+lyricsgenius~=3.0.1
+bs4~=0.0.1
+tqdm~=4.64.1
+beautifulsoup4~=4.11.1
+spacy~=3.4.4
+gensim~=4.3.0
+transformers~=4.26.0
+torch~=1.13.1
+germansentiment~=1.1.0
+configparser~=5.3.0
+fastapi~=0.89.1
+pydantic~=1.10.4
+pandas~=1.5.2

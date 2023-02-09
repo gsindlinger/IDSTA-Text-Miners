@@ -48,11 +48,13 @@ def search(search_query: SearchQuery):
 # get random song
 @app.get("/random")
 def get_random_song():
+    print("Halloooo")
     res: Song | None = es.get_random_song()
+    print(res)
     if res is None:
         raise HTTPException(status_code=404, detail="Item not found")
     else:
-        return {'success': True, 'results': res.write}
+        return {'success': True, 'results': res.__dict__}
 
 
 @app.get("/")

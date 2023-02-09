@@ -47,7 +47,7 @@ def calc_sentiment_bert_single_song(song: Song, model):
     avg_results_filtered_neg = sum(map(lambda x: x["classifier"]["score"], results_filtered_neg))
     """
     results_filtered_pos = list(filter(lambda line: line[0] == "positive", probabilities))
-    results_filtered_neg = list(filter(lambda line: line[1] == "negative", probabilities))
+    results_filtered_neg = list(filter(lambda line: line[0] == "negative", probabilities))
 
     avg_results_filtered_pos = sum(map(lambda x: x[1], results_filtered_pos))
     avg_results_filtered_neg = sum(map(lambda x: x[1], results_filtered_neg))

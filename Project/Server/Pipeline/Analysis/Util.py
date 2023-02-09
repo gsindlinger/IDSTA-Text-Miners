@@ -7,7 +7,7 @@ from spacy.lang.en.stop_words import STOP_WORDS
 # removing stopwords
 # removing punctuation
 def remove_stopwords_and_punctuation(lyrics: str) -> str:
-    nlp = spacy.load("de_core_news_sm", exclude="ner")
+    nlp = spacy.load("de_core_news_md", exclude="ner")
     word_list = ""
     for line in lyrics.split("\n"):
         for word_temp in nlp(str(line)):
@@ -28,7 +28,7 @@ def remove_symbols(lyrics: str) -> str:
 def lemmatize(lyrics: str) -> tuple[str, dict[str, str]]:
     word_mapping = {}
     lemmatized_lyrics = ""
-    nlp = spacy.load("de_core_news_sm", exclude=["parser", "ner", "tagger"])
+    nlp = spacy.load("de_core_news_md", exclude=["parser", "ner", "tagger"])
     # noinspection DuplicatedCode
     for line in lyrics.split("\n"):
         for word_temp in nlp(str(line)):
@@ -70,3 +70,8 @@ def reverse_dict(dict_temp: Dict) -> Dict:
         inv_map[v] = inv_map.get(v, []) + [k]
 
     return inv_map
+
+
+def split_list(a, n):
+    k, m = divmod(len(a), n)
+    return (a[i * k + min(i, m):(i + 1) * k + min(i + 1, m)] for i in range(n))
