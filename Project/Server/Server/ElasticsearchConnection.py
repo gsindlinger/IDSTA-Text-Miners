@@ -106,7 +106,7 @@ def get_analyzer() -> Dict:
 
 def get_es_variables() -> List[str]:
     config = configparser.ConfigParser()
-    config.read("env/elasticsearch.env")
+    config.read("../env/elasticsearch.env")
     es_user = config["DEFAULT"]["ELASTIC_USERNAME"]
     es_password = config["DEFAULT"]["ELASTIC_PASSWORD"]
     return [es_user, es_password]
