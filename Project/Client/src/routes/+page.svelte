@@ -7,11 +7,13 @@
 	import Sidebar from "$lib/components/Sidebar.svelte";
 	import AnalysisPage from "$lib/components/AnalysisPage.svelte";
 	import ApproachPage  from "$lib/components/ApproachPage.svelte";
+	import LyricsPage from "$lib/components/LyricsPage.svelte";
+	import { onMount } from "svelte";
+	import { displaySong } from "../stores/GeneralStore";
+	import { SearchApi } from "../api/SearchApi";
 
 
 	let scrollStep;
-	$: console.log(scrollStep)
-
 
 	const subtitles = [
 		"motivation",
@@ -20,6 +22,14 @@
 		"time series analysis",
 		"lyrics analysis"
 	]
+
+	onMount(() => {
+		SearchApi.getRandomSong()
+		.then((response) => displaySong.set(response))
+		.catch(() => alert('Error fetching search results!'))
+		console.log($displaySong)
+	})
+
 </script>
 
 
@@ -37,6 +47,7 @@
 			<SpaceFiller bgColor="rgb(5, 9, 54)"/>
 			<ApproachPage active={scrollStep === 3}/>
 			<AnalysisPage active={scrollStep === 4}/>
+			<LyricsPage active={scrollStep === 5}/>
 		</Scrolly>
 	</section>
 	<Sidebar active={scrollStep >= 2}>{subtitles[(Math.floor((scrollStep)/2))-1]}</Sidebar>
