@@ -94,4 +94,25 @@ export const getArtistName = function(song) {
     }
 }
 
+export const categories_mapping = {
+    "Gewalt": "violence",
+    "Liebe": "love",
+    "Antisemitismus": "anti-semitism",
+    "Behindertenfeindlichkeit": "anti-disability",
+    "Frauenfeindlichkeit": "misogyny",
+    "Homophobie": "homophobia",
+    "Rassismus": "racism",
+    "Trauer": "grief"
+}
+
+export const colorCategoryMapping = [
+    "#000105",
+    "#050936",
+    "#373a5e",
+    "#696b86",
+    "#231213",
+    "#462426",
+    "#69363a",
+    "#af5a60"
+]
 

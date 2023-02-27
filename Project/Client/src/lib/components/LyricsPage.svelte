@@ -3,7 +3,7 @@
 
     
     import { fade } from 'svelte/transition';
-    import { displaySong, getColorForPercentage, isMounted, loadInitialData, searchIsActive, getArtistName } from '../../stores/GeneralStore';
+    import { displaySong, getColorForPercentage, isMounted, loadInitialData, searchIsActive, getArtistName, categories_mapping } from '../../stores/GeneralStore';
     import { onMount } from "svelte";
     import BarChart from '$lib/components/BarChart.svelte';
     import SearchLyrics from '$lib/components/SearchLyrics.svelte';
@@ -49,20 +49,11 @@
     }
 
 
-    const toxicity_mapper = ['fairly toxic', 'slightly toxic', 'not toxic', 'lovingly']
+    const toxicity_mapper = ['toxic', 'toxic', 'not toxic', 'not toxic']
     const sentiment_mapper = ['negative', 'slightly negative', 'slightly positive', 'positive']
 
     const colors1 = ["#040936", "#0F21C7", "#4152F1", "#8691EC"]
-    const categories_mapping = {
-        "Gewalt": "violence",
-        "Liebe": "love",
-        "Antisemitismus": "anti-semitism",
-        "Behindertenfeindlichkeit": "anti-disability",
-        "Frauenfeindlichkeit": "misogyny",
-        "Homophobie": "homophobia",
-        "Rassismus": "racism",
-        "Trauer": "grief"
-    }
+
 
     const class_score_mapping = {
         "frauenfeindlich": "misogynistic",
@@ -141,10 +132,6 @@
         }
     }
 
-
-
-
-    
     </script>
     
     <div class="page-content-motivation background-image-motivation">
@@ -191,7 +178,7 @@
                     <div class="analysis-donut"
                     style="border-color: {getSentimentColor($displaySong.toxicity_value)}"
                     >
-                    {Math.round($displaySong.toxicity_value * 100) + "%"}</div>
+                    {Math.round(Math.abs($displaySong.toxicity_value * 100)) + "%"}</div>
                     <div class="sentiment-interpretation">{getMapperValue(toxicity_mapper, $displaySong.toxicity_value)}</div>
                 </div>
                 <div class="zero-shot-wrapper analysis-box">
@@ -298,7 +285,6 @@
     }
 
     .text-wrapper {
-        padding: 2rem;
         overflow-y: auto;
         margin-bottom: 2rem;
         position: relative;
@@ -307,6 +293,7 @@
         grid-column-end: 3;
         grid-row-start: 2;
         grid-row-end: 4;
+        flex-grow: 1;
     }
 
     .occurrences-wrapper {
@@ -381,7 +368,6 @@
     }
     
     .text-wrapper {
-        flex-grow: 1;
     }
     
     </style>

@@ -32,21 +32,24 @@
             </Typewriter>
             {#if typingDone}
             <div class="text-wrapper" in:fade="{{ duration: 1000 }}">
+                <h3>Our motivation</h3>
                 <p>
-                    <span>Whether homophobia, misogyny or antisemitism, in the public perception German 
+                    Whether homophobia, misogyny or antisemitism, in the public perception German 
                         rap seems to be one thing above all: Harsh and unfair. 
                         The popularity and sales figures of German rappers, 
                         on the other hand, justify their song texts and acting. So one might ask: 
-                    </span>
-                    <span>Does hate, discrimination & racism exist in German rap song
+                    Does hate, discrimination & racism exist in German rap song
                         lyrics? How prevalent is hate, discrimination & racism in German
                         rap song lyrics?
-                    </span>
-                    <span>
                         To answer these questions, 
                         we examined the lyrics of the most important German rap artists of the past 25 years
-                        using various natural language processing tools...          
-                    </span>
+                        using various natural language processing tools... 
+                </p>
+                <h3>What to expect on this page</h3>
+                <p>
+                    The following texts, pictures and diagrams give you an insight into the analyses we have made within the project. 
+                    First you will find an overview of the approach and methods used, followed by a time series analysis of the development of song lyrics in the past years. 
+                    The last page allows you to search for German rap lyrics on your own and study the results of the corresponding analyses.
                 </p>    
             </div>
             {/if}
@@ -55,6 +58,17 @@
 </div>
 
 <style>
+
+.text-wrapper {
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.text-wrapper h3 {
+    font-size: 1.5rem;
+}
+
 
 .citation-name-wrapper{
     width: 100%;
@@ -81,8 +95,5 @@
 	url('../images/background-images/2.jpg');
 }
 
-.text-wrapper {
-    flex-grow: 1;
-}
 
 </style>

@@ -2,7 +2,8 @@
     // @ts-nocheck
     
         import { fade } from 'svelte/transition';
-        import LineChart from '$lib/components/LineChart.svelte';
+        import LineChart from '$lib/components/LineChart2.svelte';
+	import { categories_mapping, colorCategoryMapping } from '../../stores/GeneralStore';
     
     
         export let active;
@@ -12,6 +13,32 @@
             setTimeout(() => isLoaded = true, 500);
         }
 
+
+        let categories = Object.values(categories_mapping).map(val => {
+            if(val == "violence") {
+                return ({
+                    value: val,
+                    checked: true
+                })
+            }else{
+                return ({
+                    value: val,
+                    checked: false
+                })
+            }
+        })
+
+        const handleCategorySelection = function(category) {
+            categories = categories.map(x => {
+                if(x.value === category.value) {
+                    x.checked = !x.checked
+                }
+
+                return {
+                    value: x.value, 
+                    checked: x.checked}
+            })
+        }
     
     
     </script>
@@ -21,14 +48,30 @@
             {#if active || isLoaded}
                 <div class="header-wrapper" in:fade={{delay: 300, duration: 500}}>
                     <div class="citation">
-                        <p class="header-font">hateful and friendly topics are addressed identically often in the past years</p>
+                        <p class="header-font">violent & mysogynistic in the past - less emotional lyrics recently</p>
                     </div>
                 </div>
                 {#if isLoaded}
                 <div class="text-wrapper"  in:fade={{delay: 150, duration: 500}}>
-                    <p>Wie zuvor beschrieben haben wir die Themen 
+                    <p>As described above, as one part of the project we analyzed the lyrics based on a given dictionary of related words for certain categories. 
+                        The following chart shows the proportion of related words per song in the categories listed below over the period 1998-2022.
+                        As you can see, many songs in the 2000s contained misogynistic and violent expressions. 
+                        At the same time, however, many songs about love were also written during this period. 
+                        In general, the number of terms per song seems to decrease over time. 
+                        This could be interpreted as fewer emotional lyrics being written nowadays. For details select and deselect the specific categories
                     </p>
-                    <LineChart/>    
+                    <div class="chart-button-box">
+                        <div class="chart-wrapper"><LineChart categorySelection={categories}/></div>
+                        <div class="category-selector">
+                            {#each categories as category, index}
+                                <button class="category-button reset-button" style="background-color: {category.checked ? colorCategoryMapping[index] : ''}"
+                                on:click={() => handleCategorySelection(category)}>
+                                    {category.value}
+                                </button>
+                            {/each}
+                        </div>  
+                    </div>
+                    
                 </div>
                 {/if}
             {/if}
@@ -36,14 +79,60 @@
     </div>
     
     <style>
+
+
+    .chart-wrapper {
+        flex-grow: 1;
+    }
+
+    .category-button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        padding: 0.5rem 1.4rem;
+        margin: 0.5rem;
+        border-radius: 1rem;
+        @apply text-gray-400 bg-gray-500;
+    }
+
+    .category-button:hover {
+        box-shadow: 0 0 1rem rgba(33,33,33,.5);
+    }
+
+    .category-button-selected{
+        @apply bg-slate-800 !important;
+    }
+
+
+    .category-selector {
+        display: flex;
+        font-size: 0.9rem;
+        justify-content: space-evenly;
+        align-items: center;
+        padding-top: 1rem;
+    }
+
+    .category-selector div {
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-right: 1rem;
+    }
+
+    .chart-button-box {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+    }
     
     .text-wrapper {
-        width: 100%;
         background-color: rgba(255,255,255,0.5);
         display: flex;
         flex-direction: column;
         justify-content: left;
-        padding: 2rem;
         flex-grow: 1;
         align-items: center;
     }
@@ -52,7 +141,6 @@
         width: 100%;
         font-size: 1.2rem;
         line-height: 200%;
-        padding: 2rem;
     }
     
     .citation-name-wrapper{

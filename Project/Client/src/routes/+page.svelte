@@ -9,9 +9,8 @@
 	import ApproachPage  from "$lib/components/ApproachPage.svelte";
 	import LyricsPage from "$lib/components/LyricsPage.svelte";
 	import { onMount } from "svelte";
-	import { displaySong, isMounted, loadInitialData } from "../stores/GeneralStore";
-	import { SearchApi } from "../api/SearchApi";
-
+	import { isMounted, loadInitialData } from "../stores/GeneralStore";
+	
 
 	let scrollStep;
 
@@ -20,7 +19,9 @@
 		2: "motivation",
 		3: "approach",
 		4: "time series analysis",
-		5: "lyrics analysis"
+		5: "time series analysis",
+
+		6: "lyrics analysis"
 	}
 
 
@@ -43,11 +44,11 @@
 		<Scrolly bind:value={scrollStep}>
 			<TitlePage/>
 			<SpaceFiller bgColor="rgb(5, 9, 54)"/>
-			<MotivationPage active={scrollStep === 1}/>
-			<ApproachPage active={scrollStep === 3}/>
-			<AnalysisPage active={scrollStep === 4}/>
+			<MotivationPage active={scrollStep >= 1}/>
+			<ApproachPage active={scrollStep >= 3}/>
 			<SpaceFiller bgColor="rgb(5, 9, 54)"/>
-			<LyricsPage active={scrollStep === 5}/>
+			<AnalysisPage active={scrollStep >= 4}/>
+			<LyricsPage active={scrollStep >= 5}/>
 		</Scrolly>
 	</section>
 	<Sidebar active={scrollStep >= 2}>{subtitles[scrollStep]}</Sidebar>

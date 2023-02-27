@@ -185,9 +185,6 @@
         flex-direction: column;
     }
 
-    .text-wrapper p {
-        padding: 0 0.5rem;
-    }
 
     .multiple-images img {
         position: absolute;
