@@ -8,6 +8,7 @@
 	import AnalysisPage from "$lib/components/AnalysisPage.svelte";
 	import ApproachPage  from "$lib/components/ApproachPage.svelte";
 	import LyricsPage from "$lib/components/LyricsPage.svelte";
+	import LimitationPage from "$lib/components/LimitationPage.svelte"
 	import { onMount } from "svelte";
 	import { isMounted, loadInitialData } from "../stores/GeneralStore";
 	
@@ -20,8 +21,8 @@
 		3: "approach",
 		4: "time series analysis",
 		5: "time series analysis",
-
-		6: "lyrics analysis"
+		6: "limitations",
+		7: "lyrics analysis"
 	}
 
 
@@ -46,9 +47,9 @@
 			<SpaceFiller bgColor="rgb(5, 9, 54)"/>
 			<MotivationPage active={scrollStep >= 1}/>
 			<ApproachPage active={scrollStep >= 3}/>
-			<SpaceFiller bgColor="rgb(5, 9, 54)"/>
 			<AnalysisPage active={scrollStep >= 4}/>
-			<LyricsPage active={scrollStep >= 5}/>
+			<LimitationPage active={scrollStep >= 5}/>
+			<LyricsPage active={scrollStep >= 6}/>
 		</Scrolly>
 	</section>
 	<Sidebar active={scrollStep >= 2}>{subtitles[scrollStep]}</Sidebar>

@@ -251,6 +251,7 @@
         font-size: 1.2rem;
         text-decoration: underline;
         padding-bottom: 0.5rem;
+        text-align: center;
     }
 
     .analysis-donut {
@@ -367,7 +368,5 @@
         url('../images/background-images/7.jpg');
     }
     
-    .text-wrapper {
-    }
     
     </style>

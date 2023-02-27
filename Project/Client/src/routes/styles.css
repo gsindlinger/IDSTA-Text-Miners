@@ -128,6 +128,7 @@ input, select {
 h1 {
 	font-family: var(--font-nixie);
 	letter-spacing: 0.2rem;
+    padding-left: 1rem;
 	font-size: 5rem;
 	text-align: left;
 	@apply text-gray-400;
@@ -137,7 +138,7 @@ h3 {
 	font-family: var(--font-body);
 	font-size: 1rem;
 	font-weight: normal;
-	padding: .1rem 0;
+	padding: .1rem 1rem;
 	@apply: text-gray-100
 }
 
@@ -170,15 +171,34 @@ p {
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) { 
     html {
-        font-size: 12px;
+        font-size: 11px;
     }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (max-width: 1200px) { 
+    .sidebar {
+        display: none;
+    }
+
+    .page-content-motivation {
+        display: flex;
+    }
+
+    .content-wrapper {
+        width: 90% !important;
+        left: 5% !important;
+    }
+
+
+
 }
 
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1400px) { 
     html {
-        font-size: 13px;
+        font-size: 12px;
     }
 }
 
@@ -234,6 +254,8 @@ p {
     justify-content: left;
     padding: 2rem 3rem;
     align-items: center;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .text-wrapper p {
