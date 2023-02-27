@@ -20,7 +20,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - elasticsearch_german_rap_project # persist elasticsearch data
+      - german_rap_project:/usr/share/elasticsearch/data # persist elasticsearch data
     ports:
       - "9200:9200" # make port 9200 accessible for the host
 
@@ -36,5 +36,5 @@ services:
       - elasticsearch
 
 volumes:
-  elasticsearch_german_rap_project: # use default volume settings
+  german_rap_project: # use default volume settings
     driver: local

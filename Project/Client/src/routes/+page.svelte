@@ -9,25 +9,25 @@
 	import ApproachPage  from "$lib/components/ApproachPage.svelte";
 	import LyricsPage from "$lib/components/LyricsPage.svelte";
 	import { onMount } from "svelte";
-	import { displaySong } from "../stores/GeneralStore";
+	import { displaySong, isMounted, loadInitialData } from "../stores/GeneralStore";
 	import { SearchApi } from "../api/SearchApi";
 
 
 	let scrollStep;
 
-	const subtitles = [
-		"motivation",
-		"approach",
-		"lyrics analysis",
-		"time series analysis",
-		"lyrics analysis"
-	]
+	const subtitles = {
+		1: "motivation",
+		2: "motivation",
+		3: "approach",
+		4: "time series analysis",
+		5: "lyrics analysis"
+	}
 
-	onMount(() => {
-		SearchApi.getRandomSong()
-		.then((response) => displaySong.set(response))
-		.catch(() => alert('Error fetching search results!'))
-		console.log($displaySong)
+
+	onMount(async () => {
+		if(!$isMounted) {
+			await loadInitialData()
+		}
 	})
 
 </script>
@@ -44,13 +44,13 @@
 			<TitlePage/>
 			<SpaceFiller bgColor="rgb(5, 9, 54)"/>
 			<MotivationPage active={scrollStep === 1}/>
-			<SpaceFiller bgColor="rgb(5, 9, 54)"/>
 			<ApproachPage active={scrollStep === 3}/>
 			<AnalysisPage active={scrollStep === 4}/>
+			<SpaceFiller bgColor="rgb(5, 9, 54)"/>
 			<LyricsPage active={scrollStep === 5}/>
 		</Scrolly>
 	</section>
-	<Sidebar active={scrollStep >= 2}>{subtitles[(Math.floor((scrollStep)/2))-1]}</Sidebar>
+	<Sidebar active={scrollStep >= 2}>{subtitles[scrollStep]}</Sidebar>
 </div>
 {#if scrollStep === 0}
 <Chevron/>

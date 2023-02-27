@@ -68,7 +68,7 @@
     ]
     
     $: if(active) {
-        setTimeout(() => isLoaded = true, 1000);
+        setTimeout(() => isLoaded = true, 500);
     }
 
 
@@ -93,7 +93,7 @@
             </div>
             {/if}
             {#if isLoaded}
-            <div class="text-wrapper" in:fade={{delay: 300, duration: 500}}>
+            <div class="text-wrapper" in:fade={{delay: 150, duration: 500}}>
                 <div class="topic-wrapper">
                     <button class="next-icon" on:click={handleClickPrevious}>
                         <i class="fa-solid fa-angle-left"></i>
@@ -128,6 +128,7 @@
 
     .image-text {
         height: 8rem;
+        padding-top: 0.5rem;
     }
 
     .progress-line{

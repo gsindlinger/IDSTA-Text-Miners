@@ -11,12 +11,14 @@
 
 	<div class="page-content background-title-page">
 		{#if ready}
-		<div class="title" in:fly="{{ y: 200, duration: 2000 }}">
-			<h3>Heidelberg University</h3>
-			<h3>Data Science for Text Analytics</h3>
-			<h3>Winter Term 2022 / 2023</h3>
-			<h3>Simon Körner, Gal Lebel, Gabriel Sindlinger</h3>
-			<h1>hate, discrimination & racism in german rap - a text analytics approach</h1>
+		<div class="title">
+			<div in:fly="{{ y: 200, duration: 1000 }}">
+				<h3>Heidelberg University</h3>
+				<h3>Data Science for Text Analytics</h3>
+				<h3>Winter Term 2022 / 2023</h3>
+				<h3>Gal Lebel, Gabriel Sindlinger</h3>
+			</div>
+			<h1 in:fly="{{ y: 200, duration: 1000, delay: 500 }}">hate, discrimination & racism in german rap - a text analytics approach</h1>
 		</div>
 		{/if}
 	</div>

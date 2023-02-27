@@ -20,7 +20,7 @@
 <div class="page-content-motivation background-image-motivation">
     <div class="content-wrapper">
         {#if active || isLoaded}
-            <Typewriter interval=30 cursor=false mode="cascade" on:done="{() => setTimeout(typingDone = true, 500)}">
+            <Typewriter interval=30 cursor=false mode="cascade" on:done="{() => typingDone = true}">
                 <div class="header-wrapper">
                     <div class="citation">
                         <p class="header-font">"i leave no whore daughter unfucked, everyone wants my dick - even lesbians get turned around!"</p>

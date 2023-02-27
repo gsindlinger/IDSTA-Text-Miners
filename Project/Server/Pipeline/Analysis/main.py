@@ -14,7 +14,7 @@ if __name__ == '__main__':
 
     # read songs from json file
     songs_list: GeniusSongs = GeniusLyricsExtraction \
-        .read_song_list("data/lyrics_updated.json")
+        .read_song_list("data/lyrics_updated_v2.json")
     # check occurrences of words withing the categories
     # CheckOccurences.check_occurences_songs(songs_list)
 
@@ -26,7 +26,7 @@ if __name__ == '__main__':
     # songs_list.write_song_list_to_json("data/lyrics_updated.json")
 
     # analyze the results
-    occurrences_df = CheckOccurences.sum_occurences_over_time(songs_list)
-    occurrences_df.to_csv("data/analysis/occurrences_over_time.csv")
+    # occurrences_df = CheckOccurences.sum_occurences_over_time(songs_list)
+    # occurrences_df.to_csv("data/analysis/occurrences_over_time.csv")
 
     print("done")

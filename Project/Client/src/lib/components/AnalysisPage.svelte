@@ -1,18 +1,17 @@
 <script>
     // @ts-nocheck
     
-        import Chevron from '$lib/components/Chevron.svelte';
         import { fade } from 'svelte/transition';
-        import Typewriter from 'svelte-typewriter'
+        import LineChart from '$lib/components/LineChart.svelte';
     
     
         export let active;
         let isLoaded = false;
-        let typingDone = false;
     
         $: if(active) {
-            setTimeout(() => isLoaded = true, 1000);
+            setTimeout(() => isLoaded = true, 500);
         }
+
     
     
     </script>
@@ -20,34 +19,16 @@
     <div class="page-content-motivation background-image-motivation">
         <div class="content-wrapper">
             {#if active || isLoaded}
-                <Typewriter interval=100 cursor=false mode="cascade" on:done="{() => setTimeout(typingDone = true, 500)}">
-                    <div class="header-wrapper">
-                        <div class="citation">
-                            <p class="header-font">I leave no whore daughter unfucked, everyone wants my dick - even lesbians get turned around!</p>
-                            <div class="citation-name-wrapper">
-                                <p class="citation-name">German rapper Bausa, Jul 19</p>
-                            </div>
-                        </div>
+                <div class="header-wrapper" in:fade={{delay: 300, duration: 500}}>
+                    <div class="citation">
+                        <p class="header-font">hateful and friendly topics are addressed identically often in the past years</p>
                     </div>
-                </Typewriter>
-                {#if typingDone}
-                <div class="text-wrapper" in:fade="{{ duration: 1000 }}">
-                    <p>
-                        <span>Whether homophobia, misogyny or antisemitism, in the public perception German 
-                            rap seems to be one thing above all: Harsh and unfair. 
-                            The popularity and sales figures of German rappers, 
-                            on the other hand, justify their song texts and acting. So one might ask: 
-                        </span>
-                        <span>Does hate, discrimination & racism exist in German rap song
-                            lyrics? How prevalent is hate, discrimination & racism in German
-                            rap song lyrics?
-                        </span>
-                        <span>
-                            To answer these questions, 
-                            we examined the lyrics of the most important German rap artists of the past 25 years
-                            using various natural language processing tools...          
-                        </span>
-                    </p>    
+                </div>
+                {#if isLoaded}
+                <div class="text-wrapper"  in:fade={{delay: 150, duration: 500}}>
+                    <p>Wie zuvor beschrieben haben wir die Themen 
+                    </p>
+                    <LineChart/>    
                 </div>
                 {/if}
             {/if}
@@ -60,6 +41,7 @@
         width: 100%;
         background-color: rgba(255,255,255,0.5);
         display: flex;
+        flex-direction: column;
         justify-content: left;
         padding: 2rem;
         flex-grow: 1;
@@ -106,15 +88,7 @@
         text-align: left;
         @apply text-gray-400;
     }
-    .content-wrapper {
-        height: 90%;
-        width: 80%;
-        left: 20%;
-        position: absolute;
-        max-width: 1000px;
-        display: flex;
-        flex-direction: column;
-    }
+    
     .page-content-motivation {
         display: flex;
         flex-direction: column;

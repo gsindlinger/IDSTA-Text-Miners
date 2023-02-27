@@ -178,7 +178,18 @@ p {
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1400px) { 
     html {
+        font-size: 13px;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1600px) { 
+    html {
         font-size: 14px;
+    }
+
+    .content-wrapper-lyrics {
+        max-width: 1200px !important;
     }
 }
 
@@ -212,7 +223,7 @@ p {
     width: 80%;
     left: 20%;
     position: absolute;
-    max-width: 1000px;
+    max-width: 1040px;
     display: flex;
     flex-direction: column;
 }
@@ -230,4 +241,15 @@ p {
     font-size: 1.2rem;
     line-height: 200%;
     padding: 2rem;
+}
+
+.reset-button {
+    background-color: transparent;
+    border-width: 0;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    padding: 0;
 }

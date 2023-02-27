@@ -52,11 +52,11 @@ class ElasticsearchConnection:
         except:
             return None
 
-    def search_in_title_and_lyrics(self, search_word: str, index_name: str = "lyrics_data") -> None | List[Song]:
+    def search_for_song_and_artist(self, search_word: str, index_name: str = "lyrics_data") -> None | List[Song]:
         res = self.es.search(index=index_name,
                              query={"multi_match": {
                                  "query": search_word,
-                                 "fields": ["title^3", "lyrics"]
+                                 "fields": ["title^3", "lyrics", "artist_name^3", "writer_artist^3"]
                              }})
 
         try:

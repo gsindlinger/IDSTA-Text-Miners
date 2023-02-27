@@ -43,17 +43,17 @@ def calc_sentiment_bert_single_song(song: Song, model):
     results_filtered_pos = list(filter(lambda line: line["classifier"]["label"] == "positive", results))
     results_filtered_neg = list(filter(lambda line: line["classifier"]["label"] == "negative", results))
 
-    avg_results_filtered_pos = sum(map(lambda x: x["classifier"]["score"], results_filtered_pos))
-    avg_results_filtered_neg = sum(map(lambda x: x["classifier"]["score"], results_filtered_neg))
+    sum_results_filtered_pos = sum(map(lambda x: x["classifier"]["score"], results_filtered_pos))
+    sum_results_filtered_neg = sum(map(lambda x: x["classifier"]["score"], results_filtered_neg))
     """
     results_filtered_pos = list(filter(lambda line: line[0] == "positive", probabilities))
     results_filtered_neg = list(filter(lambda line: line[0] == "negative", probabilities))
 
-    avg_results_filtered_pos = sum(map(lambda x: x[1], results_filtered_pos))
-    avg_results_filtered_neg = sum(map(lambda x: x[1], results_filtered_neg))
+    sum_results_filtered_pos = sum(map(lambda x: x[1], results_filtered_pos))
+    sum_results_filtered_neg = sum(map(lambda x: x[1], results_filtered_neg))
 
     if len(probabilities) > 0:
-        song.sentiment_value = (avg_results_filtered_pos - avg_results_filtered_neg) / len(probabilities)
+        song.sentiment_value = (sum_results_filtered_pos - sum_results_filtered_neg) / len(probabilities)
 
 
 def get_label_and_value(item):
