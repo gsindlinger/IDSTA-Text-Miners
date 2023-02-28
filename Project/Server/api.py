@@ -70,7 +70,7 @@ def get_random_song():
 
 @app.get("/occurrences")
 def get_occurrences():
-    with open('Pipeline/Analysis/data/analysis/occurrences_over_time.csv', newline='', encoding='utf8') as f:
+    with open('data/occurrences_over_time.csv', newline='', encoding='utf8') as f:
         reader = csv.reader(f)
         data = list(reader)
     return {'success': True, 'results': data}
