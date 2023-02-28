@@ -29,15 +29,12 @@ services:
     build:
       context: ./Client
     container_name: webapp
-    volumes:
-      - type: bind
-        source: ./Client/src
-        target: /usr/src/webapp/src
-      - type: bind
-        source: ./Client/static
-        target: /usr/src/webapp/static
     ports:
-      - 127.0.0.1:5173:5173
+      - 127.0.0.1:3000:3000
     links:
       - api
-
+    depends_on:
+      elastic:
+        condition: service_healthy
+      api:
+        condition: service_healthy

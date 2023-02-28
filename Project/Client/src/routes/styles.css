@@ -47,7 +47,6 @@ time, mark, audio, video {
 }
 
 body {
-	lineheight: 150%;
 	min-height: 100vh;
 	overflow-y: scroll;
 	overflow-x: hidden;
@@ -139,7 +138,7 @@ h3 {
 	font-size: 1rem;
 	font-weight: normal;
 	padding: .1rem 1rem;
-	@apply: text-gray-100
+	@apply: text-gray-100;
 }
 
 p {

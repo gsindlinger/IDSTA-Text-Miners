@@ -40,4 +40,6 @@
         width: 90%;
         @apply border-gray-400;
     }
+
+    
 </style>

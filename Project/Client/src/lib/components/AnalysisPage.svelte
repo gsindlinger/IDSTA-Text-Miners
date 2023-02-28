@@ -100,10 +100,6 @@
         box-shadow: 0 0 1rem rgba(33,33,33,.5);
     }
 
-    .category-button-selected{
-        @apply bg-slate-800 !important;
-    }
-
 
     .category-selector {
         display: flex;

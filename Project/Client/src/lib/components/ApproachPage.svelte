@@ -1,12 +1,21 @@
 <script>
     import { fade } from 'svelte/transition';
+    import logo1 from "$lib/images/pipeline/1.png";
+    import logo2 from "$lib/images/pipeline/2.png";
+    import logo3 from "$lib/images/pipeline/3.png";
+    import logo4 from "$lib/images/pipeline/4.png";
+    import logo5 from "$lib/images/pipeline/5.png";
+    import logo6 from "$lib/images/pipeline/6.png";
+    import logo7 from "$lib/images/pipeline/7.png";
+
+
 
     export let active;
     let imageCounter = 0;
     let isLoaded = false;
     const images = [
         {
-            path: "src/lib/images/pipeline/1.png",
+            path: logo1,
             description: "As a first step, we identified a list of the most relevant artists of German rap of the past years." +
             " To do this, we used the Spotify API to search for playlists created by Spotify itself and named 'Deutschrap xxxx', "+ 
             "whereby xxxx stands for any year from the period 1998-2022. All the artists there were entered in a list.",
@@ -15,7 +24,7 @@
             width: "270px",
         },
         {
-            path: "src/lib/images/pipeline/2.png",
+            path: logo2,
             description: "Subsequently, the previously created list of artists was used to download their artist ID and most relevant songs via the lyrics plattform Genius." +
             " Meta-information like date, album, etc. were added. Around 10,000 songs could be scraped with this.",
             posX: "0px",
@@ -23,7 +32,7 @@
             width: "317px"
         },
         {
-            path: "src/lib/images/pipeline/3.png",
+            path: logo3,
             description: "Since the raw data of the lyrics are rather unstructered, several steps had to be taken to clean them up." +
             " Many songs are not or only partially written in German and had to be ignored accordingly. "+
             "The remaining lyrics were finally pre-treated by means of tokenisation, stopword removal,"+
@@ -33,7 +42,7 @@
             width: "195px"
         },
         {
-            path: "src/lib/images/pipeline/4.png",
+            path: logo4,
             description: "As a first approach, we examined the raw quantity of different words of certain categories of discrimination, racism and hate." +
             " For each category, we developed a vocabulary of similar terms using the Word2Vec framework and then counted the occurrences of words in"+
             " these categories within the lyrics.",
@@ -42,7 +51,7 @@
             width: "190px"
         },
         {
-            path: "src/lib/images/pipeline/5.png",
+            path: logo5,
             description: "Subsequently, the previously created list of artists was used to download their artist ID and most relevant songs via the lyrics service." +
             " Meta-information like date, album, etc. were added.",
             posX: "500px",
@@ -50,7 +59,7 @@
             width: "190px"
         },
         {
-            path: "src/lib/images/pipeline/6.png",
+            path: logo6,
             description: "Subsequently, the previously created list of artists was used to download their artist ID and most relevant songs via the lyrics service." +
             " Meta-information like date, album, etc. were added.",
             posX: "500px",
@@ -58,7 +67,7 @@
             width: "190px"
         },
         {
-            path: "src/lib/images/pipeline/7.png",
+            path: logo7,
             description: "Subsequently, the previously created list of artists was used to download their artist ID and most relevant songs via the lyrics service." +
             " Meta-information like date, album, etc. were added.",
             posX: "695px",
