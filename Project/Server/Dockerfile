@@ -1,5 +1,5 @@
 FROM python:3.9
-COPY Server/requirements.txt .
+COPY ./requirements.txt /requirements.txt
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 COPY . .
 

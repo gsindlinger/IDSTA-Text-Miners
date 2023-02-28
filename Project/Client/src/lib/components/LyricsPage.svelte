@@ -350,6 +350,7 @@
     }
     
     .subtitle-song {
+        padding-left: 1rem;
         font-size: 1.5rem;
         font-family: var(--font-nixie);
         @apply text-gray-400;

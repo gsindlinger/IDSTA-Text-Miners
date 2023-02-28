@@ -1,5 +1,17 @@
 version: "3.9" # not required
 services:
+  api:
+    build:
+      context: ./Server
+    container_name: api
+    ports:
+      - 127.0.0.1:2999:80
+    depends_on:
+      - elasticsearch
+    healthcheck:
+          test: ["CMD", "wget", "http://localhost:80/health"]
+          interval: 5s
+  
   elasticsearch: # service name (also used as host name)
     image: elasticsearch:7.17.6
     env_file:
@@ -34,6 +46,22 @@ services:
       - 5601:5601
     depends_on:
       - elasticsearch
+
+  webapp:
+    build:
+      context: ./Client
+    container_name: webapp
+    volumes:
+      - type: bind
+        source: ./webapp/src
+        target: /usr/src/webapp/src
+      - type: bind
+        source: ./webapp/static
+        target: /usr/src/webapp/static
+    ports:
+      - 127.0.0.1:3000:3000
+    links:
+      - api
 
 volumes:
   german_rap_project: # use default volume settings
