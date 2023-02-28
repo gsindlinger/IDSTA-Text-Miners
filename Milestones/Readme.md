@@ -1,25 +1,36 @@
-# Sentiment Analysis of German Rap for hate, racism and sexism.
+# IDSTA-Text-Miners: Hate, Discrimination & Racism in German Rap - A Text Analytics Approach
 
-## Project Information
-- Title:
-- Team Members: Gal Lebel, Gabriel Sidlinger, Simon
-- Mail Addresses:
-- Existing Code Fragments: Genius Lyrics Scraper (We've improved and expanded it) - 
-- Utilized libraries: geniuslyrics
+[![Download Proposal](https://img.shields.io/badge/Download--PDF-Proposal-green)](https://github.com/gsindlinger/IDSTA-Text-Miners/raw/main/Proposal/project-proposal.pdf)
+
+Team Members:
+- Gal Lebel (galbalandroid@gmail.com) - Bachelor of Science, Computer Science, Heidelberg University
+- Johannes Gabriel Sindlinger (johannes.sindlinger@stud.uni-heidelberg.de) - Master of Sciencer, Data and Computer Science, Heidelberg University
+
+Previous Team Member:
+- Mara-Eliana Popescu
+- Simon Körner
+
+## Milestone update
+
+### Project Information
+- Existing Code Fragments: Artist Generation(Collecting artists from which we scrape lyrics), Genius Lyrics Scraper. 
+- Utilized libraries: geniuslyrics, spotipy
 
 
-## Project State
-The current state of the project is that we have successfully fetched a big list of German rap artists using Spotify and have collected the lyrics of 10,500 German rap songs. These lyrics will be used for our analysis. At this point, we have not set ElasticSearch to get our data nor we applied any predefined NLP models to our dataset, which are our next steps in the project.
+### Project State
+The current state of the project, which is visualized in the graphic below, is that we have successfully fetched a big list of German rap artists using Spotify and have collected the lyrics of 10,500 German rap songs (green color / done). These lyrics will be used for our analysis. At this point, we have not set ElasticSearch to get our data nor we applied any predefined NLP models to our dataset, which are our next steps in the project (yellow color / in progress).
 
-In the upcoming months (not sure if should be more specific than that), we will pipeline our dataset into ElasticSearch so that we can process and analyze it efficiently.
-We will use ElasticSearch to apply tokenization, stemming and lemmatization to clean and preprocess our data.
-Using our preprocessed data, we can now do basic metric analysis and analysis in terms of sentiment analysis using for example HateSonar, NLTK Sentiment Analysis and GermanSentimentBert, in order to extract insights from our data.
+In the upcoming months (not sure if should be more specific than that), we will pipeline our dataset into ElasticSearch so that we can process and analyze it efficiently (yellow color / in progress).
+
+We will use ElasticSearch to apply tokenization, stemming and lemmatization to clean and preprocess our data. Using our preprocessed data, we can now do basic metric analysis and analysis in terms of sentiment analysis using for example HateSonar, NLTK Sentiment Analysis and GermanSentimentBert, in order to extract insights from our data (red color / todo).
+
 Additionally, we might discover new interestings insights and directions for our project through the analysis. We will update our timeline and tasks accordingly, and will incorporate new ideas that might arise through the results our our analysis.
-We might also consider implementing our own models for our analysis. This could be done using machine learning techniques to train a custom model.
 
-## Data Analysis
+![Current status of the project in december 2022](https://github.com/gsindlinger/IDSTA-Text-Miners/blob/main/project_pipeline_december_2022.png)
 
-The data sources that we are using in our acquired data collection are as following :
+### Data Analysis
+
+The data sources that we are using in our acquired data collection are as following:
 - Spotify Web API: We used the spotipy library to access the Spotify Web API and retrieve a list of German rap artists. We also created a class to work with the API in order to get the list of artists from the official Spotify German rap playlist for the years 1998 to 2023.
 - Genius API: We used the lyricsgenius library to communicate with the Genius API and retrieve the lyrics of the songs by the German rap artists we obtained from the Spotify Web API. We also implemented our own method to scrape the lyrics using BeautifulSoup and multi-threaded the process to speed it up.
   - As part of our lyrics scraping process, we've decided to include additional information for each song like date of release, names of other artists participating in the song and information about the album such as album name and cover art in order to provide more context for our analysis and for our front-end platfrom to display the information in a visually appealing way.
@@ -81,7 +92,52 @@ showing the first 2 songs and their information for the artist 'Kollegah':
     }
 ```
 
-Although we have yet to preprocess our acquired collectced data, we have already thoughts about how we should approach this.
-This can be looked at as 2 parts:
-- Preprocessing the data using ElasticSearch as mentioned above (tokenization , lemmatization and so on).
-- As we prepare our data to be used for the different NLP models, we may have to exclude songs which have more than a third of the words in a language which isn't German. This will allow easier analysis of our data.
+Although we have yet to preprocess our acquired collected data, we already have few ideas about how we should approach this:
+At first we will preprocess our data using ElasticSearch as mentioned above (Tokenization, Lemmatization and so on).
+Later on, as we prepare our data to be used for the different NLP models, we may have to exclude songs which have more than a third of the words in a language which isn't German. This will allow easier analysis of our data.
+
+
+## Project Log
+
+| Date   | Who?                | What?                                                                   | 
+|--------|---------------------|-------------------------------------------------------------------------|
+| Oct 28 | Johannes Sindlinger | Design pipeline graphics                                                |
+| Oct 28 | Johannes Sindlinger | Write motivation, research topic (partly), project description (partly) |
+| Oct 30 | Mara-Eliana Popescu | Extend project description                                              |
+| Oct 31 | Gal Lebel           | Extend research topic, finish proposal                                  |
+| Nov 18 | Johannes Sindlinger | Setup issues for project start                                          |
+| Nov 25 | Johannes Sindlinger | Create artist list via Spotify API                                      |
+| Dec 10 | Gal Lebel           | Genius Lyrics Scraper                                                   |
+| Dec 10 | Gal Lebel           | Milestone Editing                                                              |
+| Dec 27/28 | Johannes Sindlinger           | Elasticsearch Connection                                                             |
+| Jan 12/13 | Johannes Sindlinger           | Discrimination Dictionary via Word2Vec                                                             |
+| Jan 13 | Johannes Sindlinger           | Counting Occurences via Word2Vec and Lemmatization                                                          |
+
+
+
+
+
+
+## Assignment Log
+
+
+| Date   | Who?                | What?                     | 
+|--------|---------------------|---------------------------|
+| Nov 12 | Johannes Sindlinger | Assignment 1 - Exercise 1 |
+| Nov 12 | Mara Popescu        | Assignment 1 - Exercise 3 |
+| Nov 13 | Simon Körner        | Assignment 1 - Exercise 2 |
+| Nov 13 | Gal Lebel           | Assignment 1 - Exercise 2 |
+| Dec 09 | Johannes Sindlinger | Assignment 2 - Exercise 2 |
+| Dec 10 | Gal Lebel           | Assignment 2 - Exercise 1 |
+| Dec 11 | Simon Körner        | Assignment 2 - Exercise 3 |
+| Jan 16 | Johannes Sindlinger | Assignment 3 - Exercise 3 |
+| Jan 15 | Gal Lebel           | Assignment 3 - Exercise 1 |
+| Jan 19 | Johannes Sindlinger | Assignment 3 - Exercise 4 |
+| Jan 22 | Simon Körner        | Assignment 3 - Exercise 2 |
+| Jan 31 | Johannes Sindlinger | Assignment 3 - Exercise 1 |
+| Jan 31 | Johannes Sindlinger | Assignment 3 - Exercise 2 |
+| Feb 02 | Johannes Sindlinger | Assignment 3 - Exercise 3 |
+
+
+
+
