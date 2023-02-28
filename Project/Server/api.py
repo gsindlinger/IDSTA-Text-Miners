@@ -5,8 +5,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
+from Pipeline.Lyrics_Scraping import GeniusLyricsExtraction
 from Pipeline.Lyrics_Scraping.GeniusLyricsExtraction import GeniusSongs
-from Pipeline.Lyrics_Scraping.Song import Song
+from Pipeline.Lyrics_Scraping.Song import Song, get_song_mapping
 from Server.ElasticsearchConnection import ElasticsearchConnection
 
 
@@ -28,6 +29,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+index_name = "german_rap_lyrics"
+es.delete_index("german_rap_lyrics")
+mapping = get_song_mapping()
+es.create_index(index_name, mapping)
+# Read json to GeniusSongs object
+songs: GeniusSongs = GeniusLyricsExtraction.read_song_list("data/lyrics.json")
+# es.insert_one_data(songs.song_list[0], index_name)
+es.insert_bulk(songs, index_name)
+
+
+
 
 @app.get("/health")
 def health():
@@ -37,7 +49,7 @@ def health():
 # endpoint that allows users to search on the frontend
 @app.post("/search")
 def search(search_query: SearchQuery):
-    res: List[Song] | None = es.search_for_song_and_artist(search_query.text)
+    res: List[Song] | None = es.search_for_song_and_artist(search_query.text, index_name=index_name)
     if res is None:
         raise HTTPException(status_code=404, detail="Item not found")
     else:
@@ -49,7 +61,7 @@ def search(search_query: SearchQuery):
 # get random song
 @app.get("/random")
 def get_random_song():
-    res: Song | None = es.get_random_song()
+    res: Song | None = es.get_random_song(index_name=index_name)
     if res is None:
         raise HTTPException(status_code=404, detail="Item not found")
     else:
