@@ -1,4 +1,5 @@
 import math
+import pathlib
 import random
 import sys
 from typing import Dict, List
@@ -15,9 +16,8 @@ from Pipeline.Lyrics_Scraping.Song import Song, dict_to_song
 
 class ElasticsearchConnection:
     def __init__(self):
-        es_host = "http://localhost:9200"
-        [es_user, es_password] = get_es_variables()
-        self.es = Elasticsearch(es_host, http_auth=(es_user, es_password))
+        es_host = "http://elastic:9200"
+        self.es = Elasticsearch(es_host)
 
     def create_index(self, index_name: str, mapping: Dict | None = None) -> None:
         self.es.indices.create(index=index_name, settings=get_analyzer())
@@ -79,14 +79,11 @@ class ElasticsearchConnection:
                              size=1,
                              query={
                                  "function_score": {
-                                     "functions": [
-                                         {
-                                             "random_score": {
-                                                 "seed": random.Random().randint(0, 100000)
-                                             }
-                                         }
-                                     ]
-                                 }})
+                                    "query": {
+                                        "match_all": {}
+                                    },
+                                    "random_score": {
+                                    }}})
         try:
             temp_song = get_list_from_api_response(res)[0]
             return temp_song[0]
@@ -115,11 +112,3 @@ def get_analyzer() -> Dict:
                 "type": "german"
             }
         }}}
-
-
-def get_es_variables() -> List[str]:
-    config = configparser.ConfigParser()
-    config.read("../env/elasticsearch.env")
-    es_user = config["DEFAULT"]["ELASTIC_USERNAME"]
-    es_password = config["DEFAULT"]["ELASTIC_PASSWORD"]
-    return [es_user, es_password]
