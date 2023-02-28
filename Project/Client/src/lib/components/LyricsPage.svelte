@@ -49,7 +49,7 @@
     }
 
 
-    const toxicity_mapper = ['toxic', 'toxic', 'not toxic', 'not toxic']
+    const toxicity_mapper = ['neutral', 'neutral', 'toxic', 'toxic', ]
     const sentiment_mapper = ['negative', 'slightly negative', 'slightly positive', 'positive']
 
     const colors1 = ["#040936", "#0F21C7", "#4152F1", "#8691EC"]
@@ -173,7 +173,7 @@
                     </div>
                     <div class="sentiment-interpretation">{getMapperValue(sentiment_mapper, $displaySong.sentiment_value)}</div>
                 </div>
-                <div class="toxicity-wrapper analysis-box" style="color: {getSentimentColor($displaySong.toxicity_value)}">
+                <div class="toxicity-wrapper analysis-box" style="color: {getSentimentColor($displaySong.toxicity_value*(-1))}">
                     <h3>Toxicity</h3>
                     <div class="analysis-donut"
                     style="border-color: {getSentimentColor($displaySong.toxicity_value)}"
