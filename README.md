@@ -109,9 +109,11 @@ Later on, as we prepare our data to be used for the different NLP models, we may
 | Nov 25 | Johannes Sindlinger | Create artist list via Spotify API                                      |
 | Dec 10 | Gal Lebel           | Genius Lyrics Scraper                                                   |
 | Dec 10 | Gal Lebel           | Milestone Editing                                                              |
+| Dec 20 | Gal Lebel           | Preprocessing of Dataset (Added Punctuation to split into meaningful sentences, removal of brackets, etc)                                              |
 | Dec 27/28 | Johannes Sindlinger           | Elasticsearch Connection                                                             |
 | Jan 12/13 | Johannes Sindlinger           | Discrimination Dictionary via Word2Vec                                                             |
 | Jan 13 | Johannes Sindlinger           | Counting Occurences via Word2Vec and Lemmatization                                                          |
+| Jan 29 | Gal Lebel            | Zero-Shot classification of Dataset                              |
 | Feb  | Johannes Sindlinger           | Frontend Design                                                          |
 
 
