@@ -31,8 +31,7 @@ app.add_middleware(
 
 index_name = "german_rap_lyrics"
 es.delete_index("german_rap_lyrics")
-mapping = get_song_mapping()
-es.create_index(index_name, mapping)
+es.create_index(index_name)
 # Read json to GeniusSongs object
 songs: GeniusSongs = GeniusLyricsExtraction.read_song_list("data/lyrics.json")
 # es.insert_one_data(songs.song_list[0], index_name)

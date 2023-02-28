@@ -19,7 +19,7 @@ class ElasticsearchConnection:
         es_host = "http://elastic:9200"
         self.es = Elasticsearch(es_host)
 
-    def create_index(self, index_name: str, mapping: Dict | None = None) -> None:
+    def create_index(self, index_name: str) -> None:
         self.es.indices.create(index=index_name, settings=get_analyzer())
 
     def delete_index(self, index_name: str) -> None:
@@ -99,6 +99,10 @@ def get_list_from_api_response(response: ApiResponse):
 def generate_docs(song_list: List[Song], index_name: str = "lyrics_data"):
     actions = []
     for song in song_list:
+        if song.genius_album_id is None or song.genius_album_id == "none":
+            song.genius_album_id = ""
+        if song.release_date == None or "unidentified" in song.release_date:
+            song.release_date = "1900-01-01"
         action = {"index": {"_index": index_name, "_id": song.genius_track_id}}
         actions.append(action)
         actions.append(song.__dict__)

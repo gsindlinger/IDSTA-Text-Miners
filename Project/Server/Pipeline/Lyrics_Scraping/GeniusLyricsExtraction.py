@@ -44,7 +44,7 @@ class GeniusSongs:
 
 
 def write_song_list_to_str(list) -> str:
-    return {ind: song.__dict__ for ind, song in enumerate(list)}
+    return {song.__dict__ for ind, song in enumerate(list)}
 
 
 class GeniusSongsDict:
@@ -69,6 +69,10 @@ def read_song_list(filename: str) -> GeniusSongs:
     with open(filename, 'r') as f:
         json_data = f.read()
     songs.song_list = [dict_to_song(song) for song in json.loads(json_data)]
+
+    for song in songs.song_list:
+        if "undefined" in song.release_date:
+            song.release_date = None
     return songs
 
 
