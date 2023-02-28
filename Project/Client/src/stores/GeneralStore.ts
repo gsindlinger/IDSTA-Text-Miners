@@ -22,7 +22,6 @@ export const loadInitialData = async function() {
     await SearchApi.getOccurrences()
         .then((response) => {
             occurrences.set(response.results)
-            console.log(get(occurrences))
         })
         .catch(() => alert('Error fetching occurrences data!'))
 }

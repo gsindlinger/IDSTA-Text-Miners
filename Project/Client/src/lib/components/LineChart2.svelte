@@ -14,7 +14,6 @@
 	const getSelectedPoints = function(categorySelection) {
 		let points_helper = []
 		let colorArray_helper = []
-		console.log(categorySelection)
 		for(let i = 0; i < categorySelection.length; i++) {
 			if(categorySelection[i].checked) {
 				let names = $occurrences.map(x => x[0]).flat()
@@ -30,7 +29,6 @@
 				colorArray_helper.push(colorCategoryMapping[i])
 			}
 		}
-		console.log(points_helper)
 		colorArray = colorArray_helper
 		return points_helper
 	}

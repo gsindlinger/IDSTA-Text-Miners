@@ -69,8 +69,6 @@
 
     const getTop4Occurences = function(song) {
         if(song.matched_categories) {
-            console.log("items_bla")
-            console.log(song)
             var items = Object.keys(song.matched_categories).map(function(key) {
                 return [key, song.matched_categories[key]];
             });
