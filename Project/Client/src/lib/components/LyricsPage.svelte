@@ -176,7 +176,7 @@
                 <div class="toxicity-wrapper analysis-box" style="color: {getSentimentColor($displaySong.toxicity_value*(-1))}">
                     <h3>Toxicity</h3>
                     <div class="analysis-donut"
-                    style="border-color: {getSentimentColor($displaySong.toxicity_value)}"
+                    style="border-color: {getSentimentColor($displaySong.toxicity_value*(-1))}"
                     >
                     {Math.round(Math.abs($displaySong.toxicity_value * 100)) + "%"}</div>
                     <div class="sentiment-interpretation">{getMapperValue(toxicity_mapper, $displaySong.toxicity_value)}</div>
