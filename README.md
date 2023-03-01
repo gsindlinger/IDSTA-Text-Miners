@@ -110,8 +110,12 @@ Later on, as we prepare our data to be used for the different NLP models, we may
 | Dec 10 | Gal Lebel           | Genius Lyrics Scraper                                                   |
 | Dec 10 | Gal Lebel           | Milestone Editing                                                              |
 | Dec 27/28 | Johannes Sindlinger           | Elasticsearch Connection                                                             |
+| Jan 2  | Gal Lebel           | Preprocessing - cleaning up dataset    |
+| Jan 2 | Gal Lebel | Filtering out non-German songs (polyglot) |
 | Jan 12/13 | Johannes Sindlinger           | Discrimination Dictionary via Word2Vec                                                             |
 | Jan 13 | Johannes Sindlinger           | Counting Occurences via Word2Vec and Lemmatization                                                          |
+| Jan 17 | Gal Lebel  | Auto-Punctuation for meaningful splitting into sentences  |
+| Jan 29 | Gal Lebel  | Zero-Shot classification        |
 | Feb  | Johannes Sindlinger           | Frontend Design                                                          |
 
 
