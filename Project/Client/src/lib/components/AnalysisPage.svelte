@@ -23,7 +23,7 @@
             }else{
                 return ({
                     value: val,
-                    checked: false
+                    checked: true
                 })
             }
         })
