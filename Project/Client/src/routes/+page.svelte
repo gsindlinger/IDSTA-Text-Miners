@@ -19,9 +19,9 @@
 		1: "motivation",
 		2: "motivation",
 		3: "approach",
-		4: "time series analysis",
+		4: "limitations",
 		5: "time series analysis",
-		6: "limitations",
+		6: "lyrics analysis",
 		7: "lyrics analysis"
 	}
 
@@ -47,8 +47,8 @@
 			<SpaceFiller bgColor="rgb(5, 9, 54)"/>
 			<MotivationPage active={scrollStep >= 1}/>
 			<ApproachPage active={scrollStep >= 3}/>
-			<AnalysisPage active={scrollStep >= 4}/>
-			<LimitationPage active={scrollStep >= 5}/>
+			<LimitationPage active={scrollStep >= 4}/>
+			<AnalysisPage active={scrollStep >= 5}/>
 			<LyricsPage active={scrollStep >= 6}/>
 		</Scrolly>
 	</section>

@@ -58,7 +58,7 @@
                         As you can see, many songs in the 2000s contained misogynistic and violent expressions. 
                         At the same time, however, many songs about love were also written during this period. 
                         In general, the number of terms per song seems to decrease over time. 
-                        This could be interpreted as fewer emotional lyrics being written nowadays. For details select and deselect the specific categories
+                        This could be interpreted as fewer emotional lyrics being written nowadays. For details select and deselect the specific categories.
                     </p>
                     <div class="chart-button-box">
                         <div class="chart-wrapper"><LineChart categorySelection={categories}/></div>
