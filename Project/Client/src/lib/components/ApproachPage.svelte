@@ -36,7 +36,8 @@
             description: "Since the raw data of the lyrics are rather unstructered, several steps had to be taken to clean them up." +
             " Many songs are not or only partially written in German and had to be ignored accordingly. "+
             "The remaining lyrics were finally pre-treated by means of tokenisation, stopword removal,"+
-            " lemmatisation and the manual deletion of filling words such as 'ey', 'oh' etc.",
+            " lemmatisation and the manual deletion of filling words such as 'ey', 'oh' etc."+
+            " Furthermore, since the used models require full sentences, we had to split the lyrics in meaningful sentences: For that we used an auto-punctuation model that can receive raw non-punctuated text and put commas and dots where needed.",
             posX: "300px",
             posY: "115px",
             width: "195px"
@@ -44,32 +45,37 @@
         {
             path: logo4,
             description: "As a first approach, we examined the raw quantity of different words of certain categories of discrimination, racism and hate." +
-            " For each category, we developed a vocabulary of similar terms using the Word2Vec framework and then counted the occurrences of words in"+
-            " these categories within the lyrics.",
+            " For each category, we developed a vocabulary of similar terms using the Word2Vec framework on a pretrained model on german text data." +
+            " Afterwards, we manually checked this vocabulary by removing some terms and adding others." +
+            " Finally, we counted the occurrences of words in these categories within the lyrics." +
+            " Insights into that analysis you'll find on the last page in the area word occurrences.",
             posX: "500px",
             posY: "30px",
             width: "190px"
         },
         {
             path: logo5,
-            description: "Subsequently, the previously created list of artists was used to download their artist ID and most relevant songs via the lyrics service." +
-            " Meta-information like date, album, etc. were added.",
+            description: "In addition, we looked for different pretrained models for sentiment analysis that we could apply to the lyrics."+
+            " We were able to find the german-sentiment-bert and toxicity-v2 models available on the huggingface platform. "+
+            "For both models, we analysed each line independently and calculated a mean value across the entire song. "+
+            "The sentiment analysis takes values in the range of -100% to 100%, where -100% represents a strongly negative song and 100% represents a more positive song. "+
+            "The toxicity classifier takes values for the two classes neutral and toxic values from 0% to 100% each.",
             posX: "500px",
             posY: "105px",
             width: "190px"
         },
         {
             path: logo6,
-            description: "Subsequently, the previously created list of artists was used to download their artist ID and most relevant songs via the lyrics service." +
-            " Meta-information like date, album, etc. were added.",
+            description: "In order to fit the sentiment of the songs to our labels of interest, we've chosen to use a zero-shot classifier model that can classify a piece of text into custom labels." +
+            " We've used the following labels: neutral, lovely, violent, racist, homophobic, misogynistic, friendly, positive and sad. " +
+            "These custom labels are more labels than we initially wanted to classify, but this allows the model to have other choices if the text doesn't necessarily fitting to one of our labels of interest. ", 
             posX: "500px",
             posY: "155px",
             width: "190px"
         },
         {
             path: logo7,
-            description: "Subsequently, the previously created list of artists was used to download their artist ID and most relevant songs via the lyrics service." +
-            " Meta-information like date, album, etc. were added.",
+            description: "All the results of the analyses were then collected and evaluated. The results are presented here on this website. Details on the results and the procedure can be found in the associated report.",
             posX: "695px",
             posY: "50px",
             width: "150px"
@@ -192,6 +198,10 @@
     .text-wrapper {
         height: 100%;
         flex-direction: column;
+    }
+
+    .text-wrapper p {
+        padding: 0 0 0 1rem;
     }
 
 
