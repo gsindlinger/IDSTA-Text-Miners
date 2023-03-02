@@ -58,7 +58,7 @@ This picture describes the different parts of this project. Details on the respe
 | Part of the project | Functionality |
 | --- | --- |
 | [Artist Generation](https://github.com/gsindlinger/IDSTA-Text-Miners/tree/main/Project/Server/Pipeline/Artist_Generation) | Extracting relevant artists via Spotify API | 
-| Lyrics Extraction(https://github.com/gsindlinger/IDSTA-Text-Miners/tree/main/Project/Server/Pipeline/Lyrics_Scraping) | Extract lyrics from preselected artists via GeniusAPI and HTTP scraping |
+| [Lyrics Extraction](https://github.com/gsindlinger/IDSTA-Text-Miners/tree/main/Project/Server/Pipeline/Lyrics_Scraping) | Extract lyrics from preselected artists via GeniusAPI and HTTP scraping |
 | TODO | |
 
 
