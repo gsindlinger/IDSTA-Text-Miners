@@ -14,7 +14,7 @@ Previous Team Member:
 - Mara-Eliana Popescu
 - Simon Körner
 
-Below you find all information about this repository and the project we have implemented in the context of the lecture Data Science for Text Analytics in the winter semester 2022/23 at the University of Heidelberg. The folder Assignments contains stuff which are accompanying material to the lecture. Proposal, Milestone and Report represent specific parts of the Project, the Report is the final documentation for the project. All the relevant source code about the Project can be found in the corresponding subdirectory, as well as the configuration for running the project on Docker.
+Below you find all information about this repository and the project we have implemented in the context of the lecture Data Science for Text Analytics in the winter semester 2022/23 at the University of Heidelberg. The folder Assignments contains contents which are accompanying material to the lecture. Proposal, Milestone and Report represent specific parts of the Project, the Report is the final documentation for the project. All the relevant source code about the Project can be found in the corresponding subdirectory, as well as the configuration for running the project on Docker.
 
 All data which contains the dictionary used for checking occurrences of words within lyrics, the results of occurrences check and the lyrics data itself [can be found in the data folder within the project folder](https://github.com/gsindlinger/IDSTA-Text-Miners/tree/main/Project/Server/data).
 
