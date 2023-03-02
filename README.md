@@ -62,7 +62,6 @@ This picture describes the different parts of this project. Details on the respe
 | [Preprocessing](https://github.com/gsindlinger/IDSTA-Text-Miners/blob/main/Project/Server/Pipeline/Preprocessing/zero_shot_classification.ipynb) | Cleaning the dataset, removing songs containing non-german text |
 | [Auto-Punctuating and further preprocessing](https://github.com/gsindlinger/IDSTA-Text-Miners/blob/main/Project/Server/Pipeline/Preprocessing/zero_shot_classification.ipynb) | Punctuating the dataset to split songs into sentences, lemmatization and stopwords removal via spacy |
 | [Zero-Shot Classification](https://github.com/gsindlinger/IDSTA-Text-Miners/blob/main/Project/Server/Pipeline/Preprocessing/zero_shot_classification.ipynb) | Using a Zero-Shot classifier to classify songs |
-|
 
 
 ## Project Log
