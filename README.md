@@ -17,7 +17,6 @@ All data which contains the dictionary used for checking occurrences of words wi
 ## Project Information
 
 ### Getting Started
-### Start
 All three components are dockerized, i.e. you just need to start the docker containers defined in the [compose.yml](https://github.com/gsindlinger/IDSTA-Text-Miners/blob/main/Project/compose.yml), e.g. using docker-compose functionalities.
 Make sure the ports for the three components are available on your machine:
 * ElasticSearch: 9200
@@ -42,6 +41,7 @@ Frontend: SvelteKit, Axios, Tailwind-CSS, D3, SvelteTypewriter
 ### Code Fragments / Where to find which part of the project?
 | Part of the project | Functionality |
 | [Client](https://github.com/gsindlinger/IDSTA-Text-Miners/tree/main/Project/Client) | Displaying research results | 
+| TODO |
 
 
 ## Project Log
