@@ -44,7 +44,9 @@ Obtaining Data / Preprocessing / Analysis: Lyricsgenius, Beatifulsoup, Spacy, Ge
 
 ### Code Fragments / Where to find which part of the project?
 
-[!https://raw.githubusercontent.com/gsindlinger/IDSTA-Text-Miners/main/project_pipeline_final.png](https://raw.githubusercontent.com/gsindlinger/IDSTA-Text-Miners/main/project_pipeline_final.png)
+![Project Pipeline](https://raw.githubusercontent.com/gsindlinger/IDSTA-Text-Miners/main/project_pipeline_final.png)
+
+This picture describes the different parts of this project. Details on the respective parts can be found in the report and the associated code. The following table lists the respective functionalities and the associated folders in the project.
 
 | Part of the project | Functionality |
 | --- | --- |
