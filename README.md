@@ -8,7 +8,7 @@
 
 Team Members:
 - Gal Lebel (galbalandroid@gmail.com) - Bachelor of Science, Computer Science, Heidelberg University
-- Johannes Gabriel Sindlinger (johannes.sindlinger@stud.uni-heidelberg.de) - Master of Sciencer, Data and Computer Science, Heidelberg University
+- Johannes Gabriel Sindlinger (johannes.sindlinger@stud.uni-heidelberg.de) - Master of Science, Data and Computer Science, Heidelberg University
 
 Previous Team Member:
 - Mara-Eliana Popescu
