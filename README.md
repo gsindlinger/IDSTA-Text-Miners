@@ -59,7 +59,10 @@ This picture describes the different parts of this project. Details on the respe
 | --- | --- |
 | [Artist Generation](https://github.com/gsindlinger/IDSTA-Text-Miners/tree/main/Project/Server/Pipeline/Artist_Generation) | Extracting relevant artists via Spotify API | 
 | [Lyrics Extraction](https://github.com/gsindlinger/IDSTA-Text-Miners/tree/main/Project/Server/Pipeline/Lyrics_Scraping) | Extract lyrics from preselected artists via GeniusAPI and HTTP scraping |
-| TODO | |
+| Preprocessing (https://github.com/gsindlinger/IDSTA-Text-Miners/blob/main/Project/Server/Pipeline/Preprocessing/zero_shot_classification.ipynb) | Cleaning the dataset, removing songs containing non-german text |
+| Auto-Punctuating and further preprocessing (https://github.com/gsindlinger/IDSTA-Text-Miners/blob/main/Project/Server/Pipeline/Preprocessing/zero_shot_classification.ipynb) | Punctuating the dataset to split songs into sentences, lemmatization and stopwords removal via spacy |
+| Zero-Shot Classification (https://github.com/gsindlinger/IDSTA-Text-Miners/blob/main/Project/Server/Pipeline/Preprocessing/zero_shot_classification.ipynb) | Using a Zero-Shot classifier to classify songs |
+|
 
 
 ## Project Log
