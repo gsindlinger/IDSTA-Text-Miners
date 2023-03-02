@@ -31,8 +31,8 @@ After launching the containers, you can check out the webapp on [localhost:3000]
 
 Note that it will take a few moments for the database to be initialized and the data to be indexed.
 
-1. Change to the Server folder
-```cd Server```
+1. Change to the Project folder
+```cd Project```
 2. Run docker-compose
 ```docker-compose up --build```
 
