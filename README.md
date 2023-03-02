@@ -2,7 +2,7 @@
 
 [![Download Proposal](https://img.shields.io/badge/Download--PDF-Proposal-green)](https://github.com/gsindlinger/IDSTA-Text-Miners/raw/main/Proposal/project-proposal.pdf)
 
-<p align="center">
+<p align="center" style="width: 50%; display: flex; justify-content: center">
   <img src="https://raw.githubusercontent.com/gsindlinger/IDSTA-Text-Miners/main/title.png" alt="Project title"/>
 </p>
 
