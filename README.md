@@ -33,10 +33,10 @@ Note that it will take a few moments for the database to be initialized and the 
 ```docker-compose up --build```
 
 ### Technologies / Libraries
-Server / Backend: Fastapi, Spotipy, 
+* Server / Backend: Fastapi, Spotipy, 
 Obtaining Data / Preprocessing / Analysis: Lyricsgenius, Beatifulsoup, Spacy, Gensim, Huggingface-Transformers, German-Sentiment-Bert 
-Data Store: Elasticsearch
-Frontend: SvelteKit, Axios, Tailwind-CSS, D3, SvelteTypewriter
+* Data Store: Elasticsearch
+* Frontend: SvelteKit, Axios, Tailwind-CSS, D3, SvelteTypewriter
 
 ### Code Fragments / Where to find which part of the project?
 | Part of the project | Functionality |
