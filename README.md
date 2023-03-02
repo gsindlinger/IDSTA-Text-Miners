@@ -82,7 +82,7 @@ This picture describes the different parts of this project. Details on the respe
 | Jan 17 | Gal Lebel  | Auto-Punctuation for meaningful splitting into sentences  |
 | Jan 29 | Gal Lebel  | Zero-Shot classification        |
 | Feb  | Johannes Sindlinger           | Frontend Design                                                          |
-| Mar 01 | Gal Lebel | Evaluation |
+| Mar 01 | Johannes Sindlinger & Gal Lebel | Manual Labeling & Evaluation |
 
 
 
