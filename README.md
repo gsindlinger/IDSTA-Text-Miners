@@ -40,6 +40,7 @@ Frontend: SvelteKit, Axios, Tailwind-CSS, D3, SvelteTypewriter
 
 ### Code Fragments / Where to find which part of the project?
 | Part of the project | Functionality |
+---
 | [Client](https://github.com/gsindlinger/IDSTA-Text-Miners/tree/main/Project/Client) | Displaying research results | 
 | TODO |
 
