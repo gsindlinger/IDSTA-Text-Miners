@@ -43,6 +43,9 @@ Obtaining Data / Preprocessing / Analysis: Lyricsgenius, Beatifulsoup, Spacy, Ge
 * Frontend: SvelteKit, Axios, Tailwind-CSS, D3, SvelteTypewriter
 
 ### Code Fragments / Where to find which part of the project?
+
+[!https://raw.githubusercontent.com/gsindlinger/IDSTA-Text-Miners/main/project_pipeline_final.png](https://raw.githubusercontent.com/gsindlinger/IDSTA-Text-Miners/main/project_pipeline_final.png)
+
 | Part of the project | Functionality |
 | --- | --- |
 | [Client](https://github.com/gsindlinger/IDSTA-Text-Miners/tree/main/Project/Client) | Displaying research results | 
