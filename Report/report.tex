@@ -1,0 +1,129 @@
+% This template was initially provided by Dulip Withanage.
+% Modifications for the database systems research group
+% were made by Conny Junghans,  Jannik Strötgen and Michael Gertz
+
+\documentclass[
+     12pt,         % font size
+     a4paper,      % paper format
+     BCOR10mm,     % binding correction
+     DIV14,        % stripe size for margin calculation
+     ]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% PACKAGES:
+
+% Use German :
+\usepackage[english]{babel}
+% Input and font encoding
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+% Index-generation
+\usepackage{makeidx}
+% Einbinden von URLs:
+\usepackage{url}
+% Special \LaTex symbols (e.g. \BibTeX):
+%\usepackage{doc}
+% Include Graphic-files:
+\usepackage{graphicx}
+% Include doc++ generated tex-files:
+%\usepackage{docxx}
+
+% Fuer anderthalbzeiligen Textsatz
+\usepackage{setspace}
+
+% Fuer research questions
+\usepackage{enumitem}
+
+\usepackage{tabularx}
+
+\newlist{questions}{enumerate}{2}
+\setlist[questions,1]{label=RQ\arabic*.,ref=RQ\arabic*}
+\setlist[questions,2]{label=(\alph*),ref=\thequestionsi(\alph*)}
+
+% hyperrefs in the documents
+ \PassOptionsToPackage{hyphens}{url}\usepackage[bookmarks=true,colorlinks,pdfpagelabels,pdfstartview = FitH,bookmarksopen = true,bookmarksnumbered = true,linkcolor = black,plainpages = false,hypertexnames = false,citecolor = black,urlcolor=black]{hyperref}
+ \usepackage{hyperref}
+ \def\UrlBreaks{\do\/\do-}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% OTHER SETTINGS:
+
+% Choose language
+\newcommand{\setlang}[1]{\selectlanguage{#1}\nonfrenchspacing}
+
+
+\begin{document}
+
+% TITLE:
+\pagenumbering{roman} 
+\begin{titlepage}
+
+
+\begin{center}
+\vspace*{2cm}
+\textbf{ 
+\Large Heidelberg University\\
+\smallskip
+\Large Institute of Computer Science\\
+%\smallskip
+%\Large Database Systems Research Group\\
+\smallskip
+}
+
+\vspace{3cm}
+
+\textbf{\large Project Report for the lecture \\  Data Science for Text Analytics}
+
+\vspace{0.5\baselineskip}
+{\huge
+\textbf{Hate, Discrimination \& Racism in German Rap - A Text Analytics Approach}
+}
+\end{center}
+
+\vfill 
+
+{\large
+\begin{tabular}[l]{ll}
+Johannes Sindlinger: & 3729339, Computer and Data Science, M. Sc.\\
+  & johannes.sindlinger@stud.uni-heidelberg.de\\
+Gal Lebel: & 3679087, Computer Science, B. Sc. \\
+  & gal.lebel@stud.uni-heidelberg.de\\
+  
+\end{tabular}
+}
+
+\vspace{1cm}
+\begin{tabular}[l]{ll}
+Github-Repository: & \url{https://github.com/gsindlinger/IDSTA-Text-Miners} \\
+Dataset: & Song Lyrics via Spotify API \& Genius \cite{genius} (see description below) \\
+Advisor: & Nicolas Reuter
+\end{tabular}
+\end{titlepage}
+
+\pagenumbering{arabic} 
+
+\input{sections/00_abstract.tex}
+
+\input{sections/01_introduction.tex}
+
+\input{sections/02_related_work.tex}
+
+\input{sections/03_methods.tex}
+
+\input{sections/04_results.tex}
+
+\input{sections/05_analysis.tex}
+
+\input{sections/06_conclusion.tex}
+
+
+\bibliographystyle{plain}
+% b) The File:
+\bibliography{references}
+
+\input{sections/98_contributions.tex}
+\input{sections/99_plagiarism_confirmation.tex}
+
+
+\end{document}
