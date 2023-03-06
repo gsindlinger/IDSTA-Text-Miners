@@ -9,6 +9,15 @@ As already outlined in \autoref{sec:motivation}, this project will study the ext
   \label{fig:pipeline}
   \end{figure}
 
+  \begin{itemize}
+    \item Data
+    \item Preprocessing
+    \item Occurrences check
+    \item Sentiment analysis
+    \item Toxicity analysis
+    \item Zero-shot classifier
+\end{itemize}
+
 As a basis for our investigations, a data set on certain artists of the German Rap will be used, which is not finally defined yet. This will be done in the nearest future using information from the web in manual and partially automated work. Corresponding information about artists can be extracted, for example, from \cite{last.fm,tonspion_2021}. The names of those artists are used in a further step to download the lyrics of all songs of those artists via the song lyrics platform Genius \cite{genius}. Genius is an online database for any kind of artistic texts and offers an API interface that provides license-free lyrics of many song lyrics. Since Genius does not fully provide all the data of every international artist, it might be necessary to accept limitations for some artists.
 
 The song lyrics, enriched with information about the artists themselves, finally form the basis of our textual analyses: Since we would like to use pretrained models for the analysis of the lyrics in a further step and many of these models only support English-language texts, it might be necessary to translate the German song lyrics first. For this, we intend to use the Python framework DL Translate \cite{lu_2022}, since it is the only package that can freely translate unlimited texts. The translated lyrics, will be stored together with the original lyrics in ElasticSearch. It must be taken into account that by using such a translation tool, possible linguistic-relevant contexts will be incorrectly transferred into the English language. However, since there is considerable interpretative space in the context of song lyrics, this limitation should not be of too much importance. In fact, it is important to keep in mind for the entire project that the song lyrics studied allow for different interpretations, which can only be determined by machine analysis to a limited extent.
