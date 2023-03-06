@@ -1,5 +1,7 @@
 # IDSTA-Text-Miners: Hate, Discrimination & Racism in German Rap - A Text Analytics Approach
 
+[![Download Report](https://img.shields.io/badge/Download--PDF-Report-orange)](https://github.com/gsindlinger/IDSTA-Text-Miners/raw/main/Report/report.pdf)
+
 [![Download Proposal](https://img.shields.io/badge/Download--PDF-Proposal-green)](https://github.com/gsindlinger/IDSTA-Text-Miners/raw/main/Proposal/project-proposal.pdf)
 
 <p align="center">
