@@ -21,10 +21,12 @@ In the following, the results of the three different approaches to analyze the d
 
 As outlined in \autoref*{sec:project}, an essential part of the task of the Occurrences Check was to elaborate a suitable dictionary for different categories, on the basis of which occurrences within the lyrics could be retrieved. After executing the process described in \autoref{sec:project} via Word2Vec and manual adjustment, the following quantities of words remained per category:
 
+\def\arraystretch{1.2}
 \begin{table}[!hbt]
     \centering
     \begin{tabular}{|l|l|}
     \hline
+    \textbf{Category} & \textbf{Number of words} \\ \hline
     Misogyny        & 19 \\ \hline
     Violence        & 17 \\ \hline
     Anti-Semitism   & 14 \\ \hline
@@ -34,6 +36,8 @@ As outlined in \autoref*{sec:project}, an essential part of the task of the Occu
     Love            & 10 \\ \hline
     Racism          & 6  \\ \hline
     \end{tabular}
+    \caption{Number of terms within each category of occurrences check}
+    \label{tab:dictionary}
 \end{table}
 
 The different number of words per category is due to the fact that certain categories have fewer diverse terms than others. For example, the category misogyny contains a wide variety of vulgar terms for prostitutes, while the racism category almost exclusively contains the word 'nigger'.
@@ -54,8 +58,24 @@ The following \autoref{tab:occurrences_total} shows the absolute count of occurr
     Anti-disability   & 546                            \\ \hline
     Anti-semitism     & 238                            \\ \hline
     \end{tabular}
+    \caption{Absolute count of occurrences of investigated categories}
     \label{tab:occurrences_total}
 \end{table}
+
+For further analysis, we examined the behaviour of the occurrences based on the release date of the songs. Due to the previously mentioned bias in the number of songs per year, we normalised the number of occurrences per year. \autoref{fig:occurrences_time_series} shows the development of the occurrences over the examined period 1998 to 2022. The different lines show the normalised number of occurrences per song for each category. The different categories are marked with different colours. It can be observed that especially around the year 2003, a relatively large number of songs contained violent and misogynistic terms, but at the same time also many on the subject of love. Until 2010, the occurrences of the three mentioned categories decrease to an average level of 3 occurrences per song. They maintain this level in the following years up to 2022. The other categories are less prevalent throughout the entire study period: Only the categories homophobia in 2006 and racism in 2003 exceed the mark of 1 average occurrence per song.
+
+\subsection*{Sentiment analysis}
+
+
+
+\subsection*{Zero-shot classifier}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/time_series_occurrences.png}
+    \caption{Time series analysis of counted occurrences}
+    \label{fig:occurrences_time_series}
+\end{figure}
 
 
 \begin{figure}[!htb]
@@ -81,5 +101,3 @@ The following \autoref{tab:occurrences_total} shows the absolute count of occurr
     \includegraphics[width=\textwidth]{figures/time_series_toxicity.png}
     \caption[]{Lorem ipsum}
 \end{figure}
-
-Lorem ipsum
