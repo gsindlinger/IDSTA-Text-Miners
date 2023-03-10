@@ -97,6 +97,10 @@ The toxicity analysis also shows a rather one-sided distribution of the examined
     \label{fig:toxicity}
 \end{figure}
 
+For a further analysis of the two methods of sentiment analysis, we compared the results of the two classifiers. Pearson's correlation coefficient provides insights into a possible dependency of the data. The result of the two variables German Sentiment Bert and Toxicity is -0.13.
+
+
+
 \subsection*{Zero-shot classifier}
 
 The classification via zero-shot method (see \autoref{sec:project}) provides probabilities for the given classes per song. Figure \autoref{fig:zero-shot} shows the distribution of classes across the data set. The graph on the left only considers the most likely class per song and ignores all probabilities of the other classes. It thus corresponds to a one-hot-encoded classification to a single category per song. As one can see from the graph, the class 'positive' is the most prevalent with 2149 songs assigned to it, followed by the category 'friendly' with 1732 occurrences and 'violent' with 935 occurrences. The categories 'affectionate', 'neutral' and 'mysoginistic' were selected as the most likely category only a few times. 'Racist' and 'homophobic' were not assigned to any song with highest probability.
@@ -131,7 +135,6 @@ One of the options we considered at this stage was to use ChatGPT \ OpenAI's Pla
 We therefore decided to manually label about 70 songs, of which we had an equal number from each classes of the three different methods used, so we were able to equally evaluate the efficiency and accuracy of the methods in relation to the different labels we had. During the labelling process, we realised how difficult it is even for people to assign a label, be it a positive, negative or even more specific label (like racist, misogynistic, etc.). Many biases could influence the decision, and the songs leave a lot of room for different perspectives and interpretations of their content. 
 
 So the task of labeling the songs itself proved to be very challenging, which is why we decided not to give the chosen label a percentage probability, but to simply classify them in a binary way. So we decided to ignore the exact probabilities that the different methods assigned to the different possible classes and consider them as a binary classification.
-
 
 For the evaluation, we've decided to use a Confusion Matrix and consider the F1 Score.
 We've compared our labels with the predictions of the different methods in the following manner:
