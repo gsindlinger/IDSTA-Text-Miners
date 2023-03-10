@@ -73,9 +73,9 @@ For further analysis, we examined the behaviour of the occurrences based on the 
 
 \subsection*{Sentiment analysis}
 
-For the analysis of the two described methods for sentiment analysis (German-Sentiment-Bert and Toxicity), we studied the distributions of the values across the data set. \autoref{fig:sentiment} shows the distribution of the values of the German-Sentiment-Model according to the described procedure in \autoref{sec:project}. Similarly, \autoref{fig:toxicity} shows the distributions of the values of the toxicity classifier. The left graph of the figure represents a histogram of the distribution over the complete investigation period. The right graph in contrast shows the temporal course of the values. The middle blue line within this graph corresponds to the median of the examined songs within each year, the surrounding shaded area contains all data that falls into the range of the 25\%- to 75\%-quantile. In other words, 50\% of the songs examined have a sentiment or toxicity value within the shaded area.
+For the analysis of the two described methods for sentiment analysis (German Sentiment Bert and Toxicity), we studied the distributions of the values across the data set. \autoref{fig:sentiment} shows the distribution of the values of the German-Sentiment-Model according to the described procedure in \autoref{sec:project}. Similarly, \autoref{fig:toxicity} shows the distributions of the values of the toxicity classifier. The left graph of the figure represents a histogram of the distribution over the complete investigation period. The right graph in contrast shows the temporal course of the values. The middle blue line within this graph corresponds to the median of the examined songs within each year, the surrounding shaded area contains all data that falls into the range of the 25\%- to 75\%-quantile. In other words, 50\% of the songs examined have a sentiment or toxicity value within the shaded area.
 
-In general, one can observe for the sentiment analysis via German-Sentiment-Bert that a negative sentiment prevails in the songs. The median of all data is -0.40, the 25\% quantile is -0.52 and the 75\% quantile is -0.27. The clustering of data in this range can also be gathered from the histogram in \autoref{fig:sentiment}. Only 263 songs were assigned a sentiment greater than 0, which corresponds to a share of 4.4\% of all the songs examined. 
+In general, one can observe for the sentiment analysis via German Sentiment Bert that a negative sentiment prevails in the songs. The median of all data is -0.40, the 25\% quantile is -0.52 and the 75\% quantile is -0.27. The clustering of data in this range can also be gathered from the histogram in \autoref{fig:sentiment}. Only 263 songs were assigned a sentiment greater than 0, which corresponds to a share of 4.4\% of all the songs examined. 
 
 The time series analysis of the sentiment data on the right-hand side of \autoref{fig:sentiment} reveals no meaningful change in the sentiment of the songs studied over the research period. The median decreases slightly from -0.36 in 1998 to -0.42 in 2022. The lowest median can be found in 2009 with a value of -0.47, and the highest median in 2003 with a value of -0.31.
 
@@ -123,25 +123,58 @@ The following diagram in \autoref{fig:zero-shot2} provides an in-depth view of t
 
 \subsection*{Evaluation}
 
-In order to be able to classify the results and assess their quality, we elaborated methods for evaluating the results. No evaluation was carried out for the occurrences check, since this method is based purely on counting and therefore only allows for misinterpretation to a limited extent. For the other methods, we faced the challenge that the data used was not labelled, as it should be for a an entire evaluation. Our dataset was self-acquired which meant we had no data to compare the results of our methods against.
+In order to be able to classify the results and assess their quality, we have developed methods for evaluating the results. No evaluation was carried out for the occurrence test, as this method is based on pure counting and therefore only allows for misinterpretation to a limited extent. For the other methods, we faced the challenge that the data used was not labelled as it should be for a complete evaluation. Our dataset was self-acquired, so we had no data against which to compare the results of our methods.
 
-One of the options we've considered at this stage was to use ChatGPT \ OpenAI's Playground platform to get some automatization of the very elaborate process of labeling the songs. Sadly, we've encountered a few issues, one of them being the inconsistency of the labeling (the same lines may be interpreted and classified differently each time they're given as input to the AI). But this is something that a human might also do, we might be under different conditions and interpret things from different perspectives at varying points in time. The bigger issue was the offensive word detection of OpenAI, which German rap has a lot of, which completely eliminated this option for us.
+One of the options we considered at this stage was to use ChatGPT \ OpenAI's Playground platform to automate the very time-consuming process of labelling the songs. Unfortunately, we encountered a few problems in the process. One of them was the inconsistency of the labelling, i.e. the same lines were interpreted and classified differently each time they are given as input to the AI. However, this might be something a human could do as well, one could interpret things from different perspectives at different times. One even more majore issue was the recognition of swear words in OpenAI, of which there are many in German rap, which completely ruled out this option for us.
 
-We've therefore decided to manually label about 70 songs, out of which we have an equal amount of songs from each class, so we could evaluate the efficiency and accuracy of the methods in an equal manner regarding the different labels we had.
-During the labeling process, we've realized how hard it is, even for humans, to assign a label, be it positive, negative, or even more specific labels (like racist, misogynist, and so on). Many biases could influence one's decision, and songs leave a lot of room for different ways to look at them and interpret their contents. The task of labeling the songs was very difficult on its own, which is why we decided that we wouldn't give the chosen label a probability in percentages but rather just classify it binarily. So we have decided to ignore the exact probabilities that the different methods have given to the different possible classes and to consider them as a binary classification.
+
+We therefore decided to manually label about 70 songs, of which we had an equal number from each classes of the three different methods used, so we were able to equally evaluate the efficiency and accuracy of the methods in relation to the different labels we had. During the labelling process, we realised how difficult it is even for people to assign a label, be it a positive, negative or even more specific label (like racist, misogynistic, etc.). Many biases could influence the decision, and the songs leave a lot of room for different perspectives and interpretations of their content. 
+
+So the task of labeling the songs itself proved to be very challenging, which is why we decided not to give the chosen label a percentage probability, but to simply classify them in a binary way. So we decided to ignore the exact probabilities that the different methods assigned to the different possible classes and consider them as a binary classification.
+
 
 For the evaluation, we've decided to use a Confusion Matrix and consider the F1 Score.
 We've compared our labels with the predictions of the different methods in the following manner:
-- For the Sentiment Analysis (German Bert), we have mapped any negative sentiment (probability smaller than 0) to -1 and any positive sentiment to 1.
-- For the Toxicity Analysis, we've done the same rounding up, -1 to not toxic and 1 to toxic.
-- For the Zero-shot classifier, we just omitted the probabilities and just mapped each class to an integer (0 to 8) and took the class with the highest probability as the label of the song.
+\begin{itemize}
+    \item Sentiment Analysis (German Sentiment Bert): We mapped any negative sentiment, i.e. probability less than 0, to -1 and any positive sentiment to 1.
+    \item Toxicity Analysis: We did the same approach as for German Sentiment Bert: Mapping was done to -1 for not toxic songs and 1 for toxic songs.
+    \item Zero-shot Classification: We omitted the probabilities and took the class with the highest probability as the label of the song.
+\end{itemize}
 
-The confusion metrics for the different methods can be found below:
+The confusion matrices for the different methods can be found below:
 
-\begin{table}[h]
+\begin{table}[!htb]
+    \centering
+    \begin{tabular}{l|llll}
+     & Precision & Recall & F1-Score & support \\ \hline \hline
+    negative & 0.98 & 0.63 & 0.77 & 65\\
+    positive & 0.08 & 0.67 & 0.14 & 3 \\ \hline
+    accuracy & & & 0.63 & 68\\
+    macro avg & 0.53 & 0.65 & 0.45 & 68 \\
+    weighted avg & 0.94 & 0.63 & 0.74 & 68\\
+    \end{tabular}
+    \caption{Confusion matrix for Sentiment Analysis (German Sentiment Bert)}
+    \label{tab:confusion_matrix_sentiment}
+\end{table}
+
+\begin{table}[!htb]
+    \centering
+    \begin{tabular}{l|llll}
+     & Precision & Recall & F1-Score & support \\ \hline \hline
+    neutral & 1.00 & 0.53 & 0.69 & 66\\
+    toxic & 0.06 & 1.00 & 0.11 & 2 \\ \hline
+    accuracy & & & 0.54 & 68\\
+    macro avg & 0.53 & 0.77 & 0.40 & 68 \\
+    weighted avg & 0.97 & 0.54 & 0.68 & 68\\
+    \end{tabular}
+    \caption{Confusion matrix for Toxicity Analysis}
+    \label{tab:confusion_matrix_toxicity}
+\end{table}
+
+\begin{table}[!htb]
 \centering
 \begin{tabular}{l|llll}
- & Precision & Recall & F1-Score & support \\ \hline
+ & Precision & Recall & F1-Score & support \\ \hline \hline
 neutral & 0.22 & 0.22 & 0.22 & 9\\
 affectionate & 0.78 & 0.70 & 0.74 & 10 \\ 
 violent & 0.40 & 0.67 & 0.50 & 0.9\\
@@ -150,45 +183,18 @@ homophobic & 0.00 & 0.00 & 0.00 & 0\\
 misogynist & 0.60 & 0.33 & 0.43 & 9\\
 friendly & 0.00 & 0.00 & 0.00 & 10\\
 positive & 0.50 & 0.36 & 0.42 & 11\\
-sad & 0.48 & 1.00 & 0.65 & 10\\
-\\
+sad & 0.48 & 1.00 & 0.65 & 10\\ \hline
 accuracy & & & 0.47 & 68\\
 macro avg & 0.37 & 0.41 & 0.37 & 68 \\
 weighted avg & 0.43 & 0.47 & 0.42 & 68\\
 \end{tabular}
-\caption{Confusion Matrix for Zero-shot Classifier}
-\label{tab:confusion_matrix}
+\caption{Confusion matrix for Zero-shot Classifier}
+\label{tab:confusion_matrix_zero_shot}
 \end{table}
 
 
-\begin{table}[h]
-\centering
-\begin{tabular}{l|llll}
- & Precision & Recall & F1-Score & support \\ \hline
-negative & 0.98 & 0.63 & 0.77 & 65\\
-poistive & 0.08 & 0.67 & 0.14 & 3 \\ 
-\\
-accuracy & & & 0.63 & 68\\
-macro avg & 0.53 & 0.65 & 0.45 & 68 \\
-weighted avg & 0.94 & 0.63 & 0.74 & 68\\
-\end{tabular}
-\caption{Confusion Matrix for Sentiment Analysis (German Sentiment Bert)}
-\label{tab:confusion_matrix}
-\end{table}
 
-\begin{table}[h]
-\centering
-\begin{tabular}{l|llll}
- & Precision & Recall & F1-Score & support \\ \hline
-neutral & 1.00 & 0.53 & 0.69 & 66\\
-toxic & 0.06 & 1.00 & 0.11 & 2 \\ 
-\\
-accuracy & & & 0.54 & 68\\
-macro avg & 0.53 & 0.77 & 0.40 & 68 \\
-weighted avg & 0.97 & 0.54 & 0.68 & 68\\
-\end{tabular}
-\caption{Confusion Matrix for Toxicity Analysis}
-\label{tab:confusion_matrix}
-\end{table}
+
+
 
 
