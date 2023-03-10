@@ -11,15 +11,15 @@ The 5992 songs that remained after discarding non-German songs include 2094 part
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/number_of_songs.png}
-    \label{fig:number_songs}
     \caption{Temporal distribution of scraped songs}
+    \label{fig:number_songs}
 \end{figure}
 
 In the following, the results of the three different approaches to analyze the data will be presented in detail.
 
 \subsection*{Occurrences check}
 
-As outlined in \autoref*{sec:project}, an essential part of the task of the Occurrences Check was to elaborate a suitable dictionary for different categories, on the basis of which occurrences within the lyrics could be retrieved. After executing the process described in \autoref{sec:project} via Word2Vec and manual adjustment, the following quantities of words remained per category:
+As outlined in \autoref*{sec:project}, an essential part of the task of the occurrences check was to elaborate a suitable dictionary for different categories, on the basis of which occurrences within the lyrics could be retrieved. After executing the process described in \autoref{sec:project} via Word2Vec and manual adjustment, the following quantities of words remained per category:
 
 \def\arraystretch{1.2}
 \begin{table}[!hbt]
@@ -64,12 +64,6 @@ The following \autoref{tab:occurrences_total} shows the absolute count of occurr
 
 For further analysis, we examined the behaviour of the occurrences based on the release date of the songs. Due to the previously mentioned bias in the number of songs per year, we normalised the number of occurrences per year. \autoref{fig:occurrences_time_series} shows the development of the occurrences over the examined period 1998 to 2022. The different lines show the normalised number of occurrences per song for each category. The different categories are marked with different colours. It can be observed that especially around the year 2003, a relatively large number of songs contained violent and misogynistic terms, but at the same time also many on the subject of love. Until 2010, the occurrences of the three mentioned categories decrease to an average level of 3 occurrences per song. They maintain this level in the following years up to 2022. The other categories are less prevalent throughout the entire study period: Only the categories homophobia in 2006 and racism in 2003 exceed the mark of 1 average occurrence per song.
 
-\subsection*{Sentiment analysis}
-
-
-
-\subsection*{Zero-shot classifier}
-
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/time_series_occurrences.png}
@@ -77,27 +71,39 @@ For further analysis, we examined the behaviour of the occurrences based on the 
     \label{fig:occurrences_time_series}
 \end{figure}
 
+\subsection*{Sentiment analysis}
+
+For the analysis of the two described methods for sentiment analysis (German-Sentiment-Bert and Toxicity), we studied the distributions of the values across the data set. \autoref{fig:sentiment} shows the distribution of the values of the German-Sentiment -Model according to the described procedure in \autoref{sec:project}. Similarly, \autoref{fig:toxicity} shows the distributions of the values of the toxicity classifier. The left graph of the figure represents a histogram of the distribution over the complete investigation period. The right graph in contrast shows the temporal course of the values. The middle blue line within this graph corresponds to the median of the examined songs within each year, the surrounding shaded area contains all data that falls into the range of the 25\%- to 75\%-quantile. In other words, 50\% of the songs examined have a sentiment or toxicity value within the shaded area.
+
+In general, one can observe for the sentiment analysis via German-Sentiment-Bert that a negative sentiment prevails in the songs. The median of all data is -0.40, the 25\% quantile is -0.52 and the 75\% quantile is -0.27. The clustering of data in this range can also be gathered from the histogram in \autoref{fig:sentiment}. Only 263 songs were assigned a sentiment greater than 0, which corresponds to a share of 4.4\% of all the songs examined. 
+
+The time series analysis of the sentiment data on the right-hand side of \autoref{fig:sentiment} reveals no meaningful change in the sentiment of the songs studied over the research period. The median decreases slightly from -0.36 in 1998 to -0.42 in 2022. The lowest median can be found in 2009 with a value of -0.47, and the highest median in 2003 with a value of -0.31.
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/sentiment_histogram.png}
-    \caption[]{Lorem ipsum}
+    \includegraphics[width=0.49\textwidth]{figures/sentiment_histogram.png}
+    \includegraphics[width=0.49\textwidth]{figures/time_series_sentiment.png}
+    \caption{Distribution of results regarding German-Bert-Sentiment analysis}
+    \label{fig:sentiment}
 \end{figure}
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/toxicity_histogram.png}
-    \caption[]{Lorem ipsum}
+    \includegraphics[width=0.49\textwidth]{figures/toxicity_histogram.png}
+    \includegraphics[width=0.49\textwidth]{figures/time_series_toxicity.png}
+    \caption{Distribution of results regarding Toxicity analysis}
+    \label{fig:toxicity}
 \end{figure}
+
+
+
+
+\subsection*{Zero-shot classifier}
+
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/time_series_sentiment.png}
+    \includegraphics[width=\textwidth]{figures/overall_score_zero_shot.png}
     \caption[]{Lorem ipsum}
 \end{figure}
 
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/time_series_toxicity.png}
-    \caption[]{Lorem ipsum}
-\end{figure}
