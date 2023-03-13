@@ -103,9 +103,9 @@ For a further analysis of the two methods of sentiment analysis, we compared the
 
 \subsection*{Zero-shot classifier}
 
-The classification via zero-shot method (see \autoref{sec:project}) provides probabilities for the given classes per song. Figure \autoref{fig:zero-shot} shows the distribution of classes across the data set. The graph on the left only considers the most likely class per song and ignores all probabilities of the other classes. It thus corresponds to a one-hot-encoded classification to a single category per song. As one can see from the graph, the class 'positive' is the most prevalent with 2149 songs assigned to it, followed by the category 'friendly' with 1732 occurrences and 'violent' with 935 occurrences. The categories 'affectionate', 'neutral' and 'mysoginistic' were selected as the most likely category only a few times. 'Racist' and 'homophobic' were not assigned to any song with highest probability.
+The classification via zero-shot method (see \autoref{sec:project}) provides probabilities for the given classes per song. Figure \autoref{fig:zero-shot} shows the distribution of classes across the data set. The graph on the left only considers the most likely class per song and ignores all probabilities of the other classes. It thus corresponds to a one-hot-encoded classification to a single category per song. As one can see from the graph, the class 'positive' is the most prevalent with 2149 songs assigned to it, followed by the category 'friendly' with 1732 occurrences and 'violent' with 935 occurrences. The categories 'affectionate', 'neutral' and 'mysoginistic' were selected as the most likely category only a few times. 'Racist' and 'homophobic' were not assigned to any song with the highest probability.
 
-Looking at the left side of the \autoref{fig:zero-shot}, one gets insight into the summed probabilities of the categories. This reveals a slightly differentiated picture: The categories 'positive' and 'friendly' remain at the top, but with a smaller difference compared to the one-hot-encoded approach on the left side of \autoref{fig:zero-shot}. The categories 'affectionate', 'violent', 'neutral' and 'mysoginistic' gain more importance in this view. Racist' and 'homophobic' are still relatively underrepresented.
+Looking on the right side of \autoref{fig:zero-shot}, one gets insight into the summed probabilities of the categories. This reveals a slightly differentiated picture: The categories 'positive' and 'friendly' remain at the top, but with a smaller difference compared to the one-hot-encoded approach on the left side of \autoref{fig:zero-shot}. The categories 'affectionate', 'violent', 'neutral' and 'mysoginistic' gain more importance in this view. 'Racist' and 'homophobic' are still relatively underrepresented.
 
 
 \begin{figure}[!htb]
@@ -116,7 +116,7 @@ Looking at the left side of the \autoref{fig:zero-shot}, one gets insight into t
     \label{fig:zero-shot}
 \end{figure}
 
-The following diagram in \autoref{fig:zero-shot2} provides an in-depth view of the development of the data over time with regard to the zero-shot classification: Four-year periods in the study period 1998 to 2022 are each shown with the three predominant categories in relation to the summed probabilities of the classifier. Due to the bias in the number of songs in the different periods (see \autoref{fig:number_songs}), the sum of the probabilities was divided by the number of songs per period. Over the period studied, the values of the two most probable categories 'friendly' and 'positive' are close to each other and continue to converge. Until 2014, the third most relevant category is 'violent', before it is replaced by 'affectionate'. The average probability for the third highest category is between 12.5\% and 15\%. 
+The following diagram in \autoref{fig:zero-shot2} provides an in-depth view of the development of the data over time with regard to the zero-shot classification: Four-year periods in the study period 1998 to 2022 are each shown with the three predominant categories in relation to the summed probabilities of the classifier. Due to the bias in the number of songs in the different periods (see \autoref{fig:number_songs}), the sum of the probabilities was divided by the number of songs per period. Over the period studied, the values of the two most probable categories, 'friendly' and 'positive', are close to each other and continue to converge. Until 2014, the third most relevant category is 'violent', before it is replaced by 'affectionate'. The average probability for the third-highest category is between 12.5\% and 15\%. 
 
 \begin{figure}[!htb]
     \centering
@@ -129,7 +129,7 @@ The following diagram in \autoref{fig:zero-shot2} provides an in-depth view of t
 
 In order to be able to classify the results and assess their quality, we have developed methods for evaluating the results. No evaluation was carried out for the occurrence test, as this method is based on pure counting and therefore only allows for misinterpretation to a limited extent. For the other methods, we faced the challenge that the data used was not labelled as it should be for a complete evaluation. Our dataset was self-acquired, so we had no data against which to compare the results of our methods.
 
-One of the options we considered at this stage was to use ChatGPT \ OpenAI's Playground platform to automate the very time-consuming process of labelling the songs. Unfortunately, we encountered a few problems in the process. One of them was the inconsistency of the labelling, i.e. the same lines were interpreted and classified differently each time they are given as input to the AI. However, this might be something a human could do as well, one could interpret things from different perspectives at different times. One even more majore issue was the recognition of swear words in OpenAI, of which there are many in German rap, which completely ruled out this option for us.
+One of the options we considered at this stage was to use ChatGPT \ OpenAI's Playground platform to automate the very time-consuming process of labelling the songs. Unfortunately, we encountered a few problems in the process. One of them was the inconsistency of the labelling, i.e. the same lines were interpreted and classified differently each time they are given as input to the AI. However, this might be something a human could do as well, one could interpret things from different perspectives at different times. One even more major issue was the recognition of swear words in OpenAI, of which there are many in German rap. OpenAI doesn't allow profanities in its prompts, thus the prompts are blocked. This has completely ruled out this option for us.
 
 
 We therefore decided to manually label about 70 songs, of which we had an equal number from each classes of the three different methods used, so we were able to equally evaluate the efficiency and accuracy of the methods in relation to the different labels we had. During the labelling process, we realised how difficult it is even for people to assign a label, be it a positive, negative or even more specific label (like racist, misogynistic, etc.). Many biases could influence the decision, and the songs leave a lot of room for different perspectives and interpretations of their content. 
@@ -150,11 +150,11 @@ The confusion matrices for the different methods can be found below:
     \centering
     \begin{tabular}{l|llll}
      & Precision & Recall & F1-Score & support \\ \hline \hline
-    negative & 0.98 & 0.63 & 0.77 & 65\\
-    positive & 0.08 & 0.67 & 0.14 & 3 \\ \hline
+    negative & 0.63 & 0.98 & 0.77 & 42\\
+    positive & 0.67 & 0.08 & 0.14 & 26 \\ \hline
     accuracy & & & 0.63 & 68\\
-    macro avg & 0.53 & 0.65 & 0.45 & 68 \\
-    weighted avg & 0.94 & 0.63 & 0.74 & 68\\
+    macro avg & 0.63 & 0.53 & 0.45 & 68 \\
+    weighted avg & 0.64 & 0.63 & 0.53 & 68\\
     \end{tabular}
     \caption{Confusion matrix for Sentiment Analysis (German Sentiment Bert)}
     \label{tab:confusion_matrix_sentiment}
@@ -164,11 +164,11 @@ The confusion matrices for the different methods can be found below:
     \centering
     \begin{tabular}{l|llll}
      & Precision & Recall & F1-Score & support \\ \hline \hline
-    neutral & 1.00 & 0.53 & 0.69 & 66\\
-    toxic & 0.06 & 1.00 & 0.11 & 2 \\ \hline
+    neutral & 0.53 & 1.00 & 0.69 & 35\\
+    toxic & 1.00 & 0.06 & 0.11 & 33 \\ \hline
     accuracy & & & 0.54 & 68\\
-    macro avg & 0.53 & 0.77 & 0.40 & 68 \\
-    weighted avg & 0.97 & 0.54 & 0.68 & 68\\
+    macro avg & 0.77 & 0.53 & 0.40 & 68 \\
+    weighted avg & 0.76 & 0.54 & 0.41 & 68\\
     \end{tabular}
     \caption{Confusion matrix for Toxicity Analysis}
     \label{tab:confusion_matrix_toxicity}
@@ -179,21 +179,23 @@ The confusion matrices for the different methods can be found below:
 \begin{tabular}{l|llll}
  & Precision & Recall & F1-Score & support \\ \hline \hline
 neutral & 0.22 & 0.22 & 0.22 & 9\\
-affectionate & 0.78 & 0.70 & 0.74 & 10 \\ 
-violent & 0.40 & 0.67 & 0.50 & 0.9\\
-racist & 0.00 & 0.00 & 0.00 & 0\\
+affectionate & 0.70 & 0.78 & 0.74 & 9 \\ 
+violent & 0.67 & 0.40 & 0.50 & 15\\
+racist & 0.00 & 0.00 & 0.00 & 1\\
 homophobic & 0.00 & 0.00 & 0.00 & 0\\
-misogynist & 0.60 & 0.33 & 0.43 & 9\\
-friendly & 0.00 & 0.00 & 0.00 & 10\\
-positive & 0.50 & 0.36 & 0.42 & 11\\
-sad & 0.48 & 1.00 & 0.65 & 10\\ \hline
+misogynist & 0.33 & 0.60 & 0.43 & 5\\
+friendly & 0.00 & 0.00 & 0.00 & 0\\
+positive & 0.36 & 0.50 & 0.42 & 8\\
+sad & 1.00 & 0.48 & 0.65 & 21\\ \hline
 accuracy & & & 0.47 & 68\\
-macro avg & 0.37 & 0.41 & 0.37 & 68 \\
-weighted avg & 0.43 & 0.47 & 0.42 & 68\\
+macro avg & 0.41 & 0.37 & 0.37 & 68 \\
+weighted avg & 0.65 & 0.47 & 0.52 & 68\\
 \end{tabular}
 \caption{Confusion matrix for Zero-shot Classifier}
 \label{tab:confusion_matrix_zero_shot}
 \end{table}
+
+\newpage
 
 
 
