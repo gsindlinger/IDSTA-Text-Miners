@@ -4,6 +4,9 @@
 
 [![Download Proposal](https://img.shields.io/badge/Download--PDF-Proposal-green)](https://github.com/gsindlinger/IDSTA-Text-Miners/raw/main/Proposal/project-proposal.pdf)
 
+[![Download Proposal](https://img.shields.io/badge/Open-Webpage-blue)](https://german-rap-project-client.onrender.com/)
+
+
 <p align="center">
   <img width="600" src="https://raw.githubusercontent.com/gsindlinger/IDSTA-Text-Miners/main/title.png" alt="Project title"/>
 </p>
