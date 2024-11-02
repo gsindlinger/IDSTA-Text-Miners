@@ -33,8 +33,8 @@
 		return points_helper
 	}
 	
-	let years_unfiltered = $occurrences[0].slice(1, $occurrences[$occurrences.length-1].length-1).map(x => Number(x))
-	let years = $occurrences[0].slice(1, $occurrences[$occurrences.length-1].length-1).filter((x, index) => index % 2 == 0).map(x => Number(x))
+	let years_unfiltered = $occurrences[0].slice(1).map(x => Number(x))
+	let years = $occurrences[0].slice(1).filter((x, index) => index % 2 == 0).map(x => Number(x))
 
 	const lineGenHelper = function(line) {
 		return years_unfiltered.map((item, index) => ({
@@ -119,7 +119,7 @@
 			</g>
 
 		</svg>
-					{/if}
+		{/if}
 
 	</div>
 	

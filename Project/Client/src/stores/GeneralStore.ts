@@ -18,12 +18,18 @@ export const loadInitialData = async function() {
 			isMounted.set(true)
 		})
 		.catch(() => alert('Error fetching search results!'));
-    
-    await SearchApi.getOccurrences()
-        .then((response) => {
-            occurrences.set(response.results)
-        })
-        .catch(() => alert('Error fetching occurrences data!'))
+    // await SearchApi.getOccurrences()
+    //     .then((response) => {
+    //         occurrences.set(response.results)
+    //     })
+    //     .catch(() => alert('Error fetching occurrences data!'))
+}    
+
+export const loadOccurencesLocally = async function() {
+    const response = await fetch('/data/occurrences_over_time.csv');
+    const csvText = await response.text();
+    const rows = csvText.split('\n').map(row => row.split(',')); // Adjust delimiter if needed
+    occurrences.set(rows);
 }
 
 export const fetchSearchResults = async function(text: string) {

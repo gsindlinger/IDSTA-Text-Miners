@@ -1,8 +1,8 @@
 <script>
     // @ts-nocheck
     
-        import { fade } from 'svelte/transition';
-        import LineChart from '$lib/components/LineChart2.svelte';
+    import { fade } from 'svelte/transition';
+    import LineChart from '$lib/components/LineChart2.svelte';
 	import { categories_mapping, colorCategoryMapping } from '../../stores/GeneralStore';
     
     

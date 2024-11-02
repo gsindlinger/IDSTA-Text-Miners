@@ -10,7 +10,7 @@
 	import LyricsPage from "$lib/components/LyricsPage.svelte";
 	import LimitationPage from "$lib/components/LimitationPage.svelte"
 	import { onMount } from "svelte";
-	import { isMounted, loadInitialData } from "../stores/GeneralStore";
+	import { isMounted, loadInitialData, loadOccurencesLocally } from "../stores/GeneralStore";
 	
 
 	let scrollStep;
@@ -28,7 +28,8 @@
 
 	onMount(async () => {
 		if(!$isMounted) {
-			await loadInitialData()
+			await loadOccurencesLocally()
+			// await loadInitialData()
 		}
 	})
 
@@ -49,7 +50,7 @@
 			<ApproachPage active={scrollStep >= 3}/>
 			<LimitationPage active={scrollStep >= 4}/>
 			<AnalysisPage active={scrollStep >= 5}/>
-			<LyricsPage active={scrollStep >= 6}/>
+			<!--<LyricsPage active={scrollStep >= 6}/>-->
 		</Scrolly>
 	</section>
 	<Sidebar active={scrollStep >= 2}>{subtitles[scrollStep]}</Sidebar>
