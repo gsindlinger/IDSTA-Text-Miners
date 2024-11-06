@@ -2,6 +2,7 @@
 
 import {get, writable} from "svelte/store";
 import { SearchApi } from "../api/SearchApi";
+import { base } from "$app/paths";
 
 export const displaySong = writable({})
 export const searchSongs = writable([])
@@ -26,7 +27,7 @@ export const loadInitialData = async function() {
 }    
 
 export const loadOccurencesLocally = async function() {
-    const response = await fetch('/data/occurrences_over_time.csv');
+    const response = await fetch(`${base}/important_data/occurrences_over_time.csv`);
     const csvText = await response.text();
     const rows = csvText.split('\n').map(row => row.split(',')); // Adjust delimiter if needed
     occurrences.set(rows);
